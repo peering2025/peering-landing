@@ -1,5 +1,5 @@
-import { koMetadata } from '@/lib/metadata'
-import { getSoftwareApplicationSchema, faqSchema } from '@/lib/schemas'
+import { enMetadata } from '@/lib/metadata'
+import { getSoftwareApplicationSchema } from '@/lib/schemas'
 import { JsonLd } from '@/components/JsonLd'
 import { Navigation } from '@/components/Navigation'
 import { Footer } from '@/components/Footer'
@@ -11,27 +11,26 @@ import { PricingSection } from '@/components/sections/PricingSection'
 import { FAQSection } from '@/components/sections/FAQSection'
 import { CTASection } from '@/components/sections/CTASection'
 
-export const metadata = koMetadata
+export const metadata = enMetadata
 
-export default function HomePage() {
+export default function EnglishPage() {
   return (
     <>
-      <JsonLd data={getSoftwareApplicationSchema('ko')} />
-      <JsonLd data={faqSchema} />
+      <JsonLd data={getSoftwareApplicationSchema('en')} />
 
-      <Navigation locale="ko" />
+      <Navigation locale="en" />
 
       <main>
-        <HeroSection locale="ko" />
-        <PainPointsSection locale="ko" />
-        <FeaturesSection locale="ko" />
-        <ContactSection locale="ko" />
-        <PricingSection locale="ko" />
-        <FAQSection locale="ko" />
-        <CTASection locale="ko" />
+        <HeroSection locale="en" />
+        <PainPointsSection locale="en" />
+        <FeaturesSection locale="en" />
+        <ContactSection locale="en" />
+        <PricingSection locale="en" />
+        <FAQSection locale="en" />
+        <CTASection locale="en" />
       </main>
 
-      <Footer locale="ko" />
+      <Footer locale="en" />
     </>
   )
 }
