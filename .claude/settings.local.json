@@ -6,7 +6,10 @@
       "WebFetch(domain:tumblbug.com)",
       "Bash(taskkill:*)",
       "Bash(npx kill-port:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git remote:*)",
+      "Bash(git push:*)"
     ]
   }
 }
