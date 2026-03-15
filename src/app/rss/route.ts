@@ -2,23 +2,30 @@ import { newsPosts } from '@/content/news'
 
 const BASE_URL = 'https://peeringedu.com'
 
+/** XML 특수문자를 모두 이스케이프합니다 */
+function xmlEscape(str: string): string {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;')
+}
+
 export async function GET() {
   const items = newsPosts
     .map((post) => {
       const url = `${BASE_URL}/news/${post.slug}`
       const pubDate = new Date(post.date).toUTCString()
-      // content 필드의 HTML 태그 제거하여 description용 plain text 생성
-      const description = post.excerpt.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-      const title = post.title.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 
       return `
     <item>
-      <title>${title}</title>
+      <title>${xmlEscape(post.title)}</title>
       <link>${url}</link>
       <guid isPermaLink="true">${url}</guid>
       <pubDate>${pubDate}</pubDate>
-      <description>${description}</description>
-      <category>${post.category}</category>
+      <description>${xmlEscape(post.excerpt)}</description>
+      <category>${xmlEscape(post.category)}</category>
     </item>`
     })
     .join('')
