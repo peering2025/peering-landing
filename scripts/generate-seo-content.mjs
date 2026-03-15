@@ -66,6 +66,13 @@ const IMAGE_POOL = {
     'https://images.unsplash.com/photo-1588072432836-e10032774350?w=800&q=80&auto=format&fit=crop',
     'https://images.unsplash.com/photo-1544531585-9847b68c8c86?w=800&q=80&auto=format&fit=crop',
   ],
+  /** 번아웃 예방·웰니스·워크라이프 밸런스·자기관리 */
+  wellness: [
+    'https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&q=80&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=800&q=80&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1545389336-cf090694435e?w=800&q=80&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1471286174890-9c112ffca5b4?w=800&q=80&auto=format&fit=crop',
+  ],
 }
 
 /**
@@ -86,6 +93,8 @@ function pickImage(title, category) {
     pool = IMAGE_POOL.planning
   } else if (/수업|학급|교실|학생|장애|특수교육/.test(text)) {
     pool = IMAGE_POOL.classroom
+  } else if (/번아웃|wellnes|스트레스|예방|균형|자기관리|워크라이프|힐링/.test(text)) {
+    pool = IMAGE_POOL.wellness
   } else if (/교사|강의|발표|안내|공지/.test(text)) {
     pool = IMAGE_POOL.teaching
   } else {
