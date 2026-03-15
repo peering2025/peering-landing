@@ -24,7 +24,7 @@ const CONTENT_PATH = join(__dirname, '../src/content/news.ts')
 
 // ── Google Gemini 클라이언트 ────────────────────────────────────────────────────
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY)
-const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' })
+const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' })
 
 // ── 이미지 풀: 주제 카테고리별 큐레이션된 Unsplash 이미지 ──────────────────────
 // 각 URL은 교육·수업·계획·협업 테마의 고품질 사진입니다.
