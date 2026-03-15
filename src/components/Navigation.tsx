@@ -25,11 +25,13 @@ export function Navigation({ locale = 'ko' }: NavigationProps) {
         { label: '기능 소개', href: '#features' },
         { label: '요금제', href: '#pricing' },
         { label: '도입 문의', href: '#contact' },
+        { label: '소식', href: '/news', isPage: true },
       ]
     : [
         { label: 'Features', href: '#features' },
         { label: 'Pricing', href: '#pricing' },
         { label: 'Contact', href: '#contact' },
+        { label: 'News', href: '/news', isPage: true },
       ]
 
   return (
@@ -54,15 +56,25 @@ export function Navigation({ locale = 'ko' }: NavigationProps) {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-sm font-medium text-gray-700 hover:text-[#1A1A1A] transition-colors"
-            >
-              {link.label}
-            </a>
-          ))}
+          {navLinks.map((link) =>
+            link.isPage ? (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-sm font-medium text-gray-700 hover:text-[#1A1A1A] transition-colors"
+              >
+                {link.label}
+              </Link>
+            ) : (
+              <a
+                key={link.href}
+                href={link.href}
+                className="text-sm font-medium text-gray-700 hover:text-[#1A1A1A] transition-colors"
+              >
+                {link.label}
+              </a>
+            )
+          )}
 
           <Link
             href={isKo ? '/en' : '/'}
@@ -101,16 +113,27 @@ export function Navigation({ locale = 'ko' }: NavigationProps) {
       {/* Mobile menu */}
       {isOpen && (
         <div className="md:hidden bg-white border-t border-gray-100 shadow-lg px-4 py-4 space-y-3">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              onClick={() => setIsOpen(false)}
-              className="block text-sm font-medium text-gray-700 hover:text-[#1A1A1A] py-2"
-            >
-              {link.label}
-            </a>
-          ))}
+          {navLinks.map((link) =>
+            link.isPage ? (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setIsOpen(false)}
+                className="block text-sm font-medium text-gray-700 hover:text-[#1A1A1A] py-2"
+              >
+                {link.label}
+              </Link>
+            ) : (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => setIsOpen(false)}
+                className="block text-sm font-medium text-gray-700 hover:text-[#1A1A1A] py-2"
+              >
+                {link.label}
+              </a>
+            )
+          )}
           <div className="pt-2 flex flex-col gap-2">
             <Link
               href={isKo ? '/en' : '/'}

@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+User-agent: Yeti
+Allow: /
+
+Sitemap: https://peeringedu.com/sitemap.xml
+Host: https://peeringedu.com

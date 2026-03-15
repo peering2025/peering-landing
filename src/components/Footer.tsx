@@ -65,6 +65,14 @@ export function Footer({ locale = 'ko' }: FooterProps) {
               </li>
               <li>
                 <Link
+                  href="/news"
+                  className="hover:text-white transition-colors"
+                >
+                  {isKo ? '소식' : 'News'}
+                </Link>
+              </li>
+              <li>
+                <Link
                   href={isKo ? '/en' : '/'}
                   className="hover:text-white transition-colors"
                 >
@@ -97,6 +105,11 @@ export function Footer({ locale = 'ko' }: FooterProps) {
           </div>
         </div>
 
+        {isKo && (
+          <p className="text-xs text-gray-600 text-center mb-6 leading-relaxed">
+            피어링(Peering)은 특수학급 시간표 제작과 시수 관리를 돕는 특수교사 전용 업무 솔루션입니다.
+          </p>
+        )}
         <div className="border-t border-gray-800 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-600">
           <p>© 2025 피어링 (Peering). All rights reserved.</p>
           <p>
