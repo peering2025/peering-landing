@@ -1,5 +1,5 @@
 /**
- * 피어링 SEO 자동화 스크립트
+ * 피어링 SEO 자동화 스크립트 (글로벌 SEO·GEO 대응: 한국어 + 영어 동시 생성)
  * ─────────────────────────────────────────────────────────────────────────────
  * 실행: scripts/ 디렉토리에서 `node generate-seo-content.mjs`
  * 환경변수: GEMINI_API_KEY
@@ -7,9 +7,10 @@
  * 동작:
  *   1. src/content/news.ts를 읽어 기존 제목·슬러그 추출 (중복 방지)
  *   2. 주제 풀에서 랜덤 힌트 5개를 선택해 Gemini에 전달
- *   3. Gemini가 완전한 NewsPost JSON 생성
+ *   3. Gemini가 한국어 + 영어 완전한 NewsPost JSON 동시 생성
  *   4. 글 주제 키워드로 Unsplash 이미지 자동 배정
- *   5. news.ts의 newsPosts 배열 맨 앞에 새 글 삽입
+ *   5. news.ts의 newsPosts 배열 맨 앞에 한국어 글 삽입
+ *   6. news-en.ts의 newsPostsEn 객체 맨 앞에 영어 번역 삽입
  * ─────────────────────────────────────────────────────────────────────────────
  */
 
@@ -21,6 +22,7 @@ import { join, dirname } from 'path'
 // ── 경로 설정 ──────────────────────────────────────────────────────────────────
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const CONTENT_PATH = join(__dirname, '../src/content/news.ts')
+const CONTENT_EN_PATH = join(__dirname, '../src/content/news-en.ts')
 
 // ── Google Gemini 클라이언트 ────────────────────────────────────────────────────
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY)
@@ -179,25 +181,29 @@ ${existingTitles.map((t) => `• ${t}`).join('\n')}
 ${hints.map((t) => `• ${t}`).join('\n')}
 
 ─── 출력 형식 ───
-아래 JSON을 반드시 \`\`\`json ... \`\`\` 코드 블록으로 감싸서 응답하세요:
+아래 JSON을 반드시 \`\`\`json ... \`\`\` 코드 블록으로 감싸서 응답하세요.
+한국어(title/excerpt/content)와 영어(title_en/excerpt_en/content_en)를 모두 포함하세요:
 
 {
   "slug": "영소문자와-하이픈만-사용-30자이내",
-  "title": "SEO 제목 (40자 이내, '특수교육'/'특수학급'/'피어링' 중 1개 이상 포함)",
+  "title": "한국어 SEO 제목 (40자 이내, '특수교육'/'특수학급'/'피어링' 중 1개 이상 포함)",
+  "title_en": "English SEO title (60 chars max)",
   "date": "${dateStr}",
   "category": "팁 & 노하우",
-  "excerpt": "카드 요약 (80자 이내, 검색 키워드를 자연스럽게 포함)",
+  "excerpt": "한국어 카드 요약 (80자 이내, 검색 키워드 자연스럽게 포함)",
+  "excerpt_en": "English card summary (100 chars max)",
   "readTime": 읽는시간(3~7 사이 정수),
-  "content": "풍성한 HTML 콘텐츠"
+  "content": "풍성한 한국어 HTML 콘텐츠",
+  "content_en": "Rich English HTML content (same structure, fully translated)"
 }
 
-─── content 작성 규칙 ───
+─── content / content_en 작성 규칙 ───
 • <h2>로 시작, <h3>로 섹션 구분, <p>/<ul>/<li>/<strong> 적극 활용
 • 최소 600자 이상의 실용적인 내용
 • 마지막 단락에 피어링 솔루션을 자연스럽게 언급하며 마무리
-• 전문적이고 정중한 특수교사 어조
+• 한국어: 전문적이고 정중한 특수교사 어조 / 영어: professional tone for special education teachers
 • ⚠️ 백틱(\`) 문자 절대 사용 금지 — 단어 강조는 <strong> 태그로 대체
-• ⚠️ HTML 엔티티(\\&amp; 등) 사용 금지, 한글 특수문자 직접 사용`
+• ⚠️ HTML 엔티티(\\&amp; 등) 사용 금지, 특수문자 직접 사용`
 
   console.log('\n🤖 Gemini API 호출 중...')
 
@@ -223,10 +229,17 @@ ${hints.map((t) => `• ${t}`).join('\n')}
   }
 
   // 7. 필수 필드 검증
-  const required = ['slug', 'title', 'date', 'category', 'excerpt', 'readTime', 'content']
+  const required = ['slug', 'title', 'date', 'category', 'excerpt', 'readTime', 'content',
+                    'title_en', 'excerpt_en', 'content_en']
   for (const field of required) {
     if (post[field] === undefined || post[field] === '') {
-      console.error(`❌ 필수 필드 누락: ${field}`)
+      console.warn(`⚠️  필드 누락: ${field} (계속 진행)`)
+    }
+  }
+  // 한국어 필수 필드만 하드 체크
+  for (const field of ['slug', 'title', 'date', 'category', 'excerpt', 'readTime', 'content']) {
+    if (post[field] === undefined || post[field] === '') {
+      console.error(`❌ 한국어 필수 필드 누락: ${field}`)
       process.exit(1)
     }
   }
@@ -241,6 +254,9 @@ ${hints.map((t) => `• ${t}`).join('\n')}
   if (post.excerpt.length > 80) {
     console.warn(`⚠️  excerpt ${post.excerpt.length}자 → 80자로 자름`)
     post.excerpt = post.excerpt.slice(0, 79) + '…'
+  }
+  if (post.excerpt_en && post.excerpt_en.length > 100) {
+    post.excerpt_en = post.excerpt_en.slice(0, 99) + '…'
   }
 
   // 10. 이미지 자동 배정 (제목·카테고리 키워드 분석)
@@ -278,15 +294,46 @@ ${escapeForTemplateLiteral(post.content)}
 
   writeFileSync(CONTENT_PATH, newContent, 'utf-8')
 
-  // 13. 결과 출력
+  // 13. 영어 번역을 news-en.ts에 삽입
+  if (post.title_en && post.excerpt_en && post.content_en) {
+    const currentEnContent = readFileSync(CONTENT_EN_PATH, 'utf-8')
+    const EN_MARKER = 'export const newsPostsEn: Record<string, NewsPostEn> = {'
+    const enMarkerIndex = currentEnContent.indexOf(EN_MARKER)
+
+    if (enMarkerIndex === -1) {
+      console.warn('⚠️  news-en.ts 마커를 찾을 수 없습니다. 영문 삽입을 건너뜁니다.')
+    } else {
+      const enPostTs = `
+  '${escapeForTs(post.slug)}': {
+    title: '${escapeForTs(post.title_en)}',
+    excerpt:
+      '${escapeForTs(post.excerpt_en)}',
+    content: \`
+${escapeForTemplateLiteral(post.content_en)}
+    \`.trim(),
+  },`
+
+      const enInsertAt = enMarkerIndex + EN_MARKER.length
+      const newEnContent =
+        currentEnContent.slice(0, enInsertAt) + enPostTs + currentEnContent.slice(enInsertAt)
+      writeFileSync(CONTENT_EN_PATH, newEnContent, 'utf-8')
+      console.log(`\n🌐 영문 번역 저장 완료: ${post.title_en}`)
+    }
+  } else {
+    console.warn('⚠️  영문 필드(title_en/excerpt_en/content_en) 없음 — news-en.ts 업데이트 건너뜁니다.')
+  }
+
+  // 14. 결과 출력
   console.log('\n✅ 새 글 추가 완료!')
-  console.log(`   제목     : ${post.title}`)
+  console.log(`   제목 (KO): ${post.title}`)
+  console.log(`   제목 (EN): ${post.title_en || '(미생성)'}`)
   console.log(`   슬러그   : ${post.slug}`)
   console.log(`   날짜     : ${post.date}`)
   console.log(`   카테고리 : ${post.category}`)
   console.log(`   읽는 시간: ${post.readTime}분`)
   console.log(`   이미지   : ${post.image}`)
-  console.log(`\n📍 URL 경로: /news/${post.slug}`)
+  console.log(`\n📍 KO URL: /news/${post.slug}`)
+  console.log(`📍 EN URL: /en/news/${post.slug}`)
 }
 
 main().catch((err) => {

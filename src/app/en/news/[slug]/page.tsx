@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Navigation } from '@/components/Navigation'
 import { Footer } from '@/components/Footer'
 import { newsPosts, getPostBySlug, getAllSlugs } from '@/content/news'
+import { newsPostsEn } from '@/content/news-en'
 import { categoryColors, categoryLabelsEn, formatDate, DEFAULT_NEWS_IMAGE } from '@/lib/news-utils'
 
 interface Props {
@@ -19,22 +20,25 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = getPostBySlug(slug)
   if (!post) return {}
 
+  const enData = newsPostsEn[slug]
   const BASE_URL = 'https://peeringedu.com'
   const ogImage = post.image || DEFAULT_NEWS_IMAGE
+  const title = enData?.title || post.title
+  const description = enData?.excerpt || post.excerpt
 
   return {
-    title: `${post.title} | Peering News`,
-    description: post.excerpt,
-    keywords: ['special education timetable', 'special needs classroom', 'Peering', post.category],
+    title: `${title} | Peering News`,
+    description,
+    keywords: ['special education timetable', 'special needs classroom', 'Peering', categoryLabelsEn[post.category]],
     alternates: { canonical: `${BASE_URL}/en/news/${slug}` },
     openGraph: {
-      title: post.title,
-      description: post.excerpt,
+      title,
+      description,
       url: `${BASE_URL}/en/news/${slug}`,
       siteName: 'Peering',
       type: 'article',
       publishedTime: post.date,
-      images: [{ url: ogImage, width: 800, alt: post.title }],
+      images: [{ url: ogImage, width: 800, alt: title }],
     },
   }
 }
@@ -44,16 +48,22 @@ export default async function EnNewsDetailPage({ params }: Props) {
   const post = getPostBySlug(slug)
   if (!post) notFound()
 
+  const enData = newsPostsEn[slug]
+  const displayTitle = enData?.title || post.title
+  const displayExcerpt = enData?.excerpt || post.excerpt
+  const displayContent = enData?.content || post.content
+
   const related = newsPosts.filter((p) => p.slug !== slug).slice(0, 2)
   const heroImage = post.image || DEFAULT_NEWS_IMAGE
 
   const articleSchema = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
-    headline: post.title,
-    description: post.excerpt,
+    headline: displayTitle,
+    description: displayExcerpt,
     image: heroImage,
     datePublished: post.date,
+    inLanguage: 'en',
     author: {
       '@type': 'Organization',
       name: 'Peering',
@@ -84,7 +94,7 @@ export default async function EnNewsDetailPage({ params }: Props) {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={heroImage}
-            alt={post.title}
+            alt={displayTitle}
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
@@ -117,16 +127,16 @@ export default async function EnNewsDetailPage({ params }: Props) {
           </div>
 
           <h1 className="text-2xl sm:text-3xl font-bold text-[#1A1A1A] leading-tight mb-4">
-            {post.title}
+            {displayTitle}
           </h1>
 
           <p className="text-base text-gray-500 leading-relaxed border-l-4 border-[#FFCC00] pl-4 mb-10 italic">
-            {post.excerpt}
+            {displayExcerpt}
           </p>
 
           <div
             className="news-prose prose prose-lg max-w-none"
-            dangerouslySetInnerHTML={{ __html: post.content }}
+            dangerouslySetInnerHTML={{ __html: displayContent }}
           />
 
           {/* ── Bottom actions ──────────────────────────────────────────────── */}
@@ -184,33 +194,36 @@ export default async function EnNewsDetailPage({ params }: Props) {
               More articles
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-              {related.map((rel) => (
-                <Link
-                  key={rel.slug}
-                  href={`/en/news/${rel.slug}`}
-                  className="group flex overflow-hidden rounded-xl border border-gray-100 shadow-sm hover:shadow-md hover:border-[#FFCC00] transition-all"
-                >
-                  <div className="relative w-24 shrink-0 overflow-hidden bg-gray-50">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={rel.image || DEFAULT_NEWS_IMAGE}
-                      alt={rel.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                  <div className="flex flex-col justify-center p-4">
-                    <span
-                      className={`inline-block px-2 py-0.5 rounded-full text-xs font-semibold mb-1.5 w-fit ${categoryColors[rel.category]}`}
-                    >
-                      {categoryLabelsEn[rel.category]}
-                    </span>
-                    <p className="text-sm font-bold text-[#1A1A1A] group-hover:text-[#8B6914] transition-colors leading-snug line-clamp-2">
-                      {rel.title}
-                    </p>
-                    <p className="text-xs text-gray-400 mt-1">{formatDate(rel.date, 'en')}</p>
-                  </div>
-                </Link>
-              ))}
+              {related.map((rel) => {
+                const relEn = newsPostsEn[rel.slug]
+                return (
+                  <Link
+                    key={rel.slug}
+                    href={`/en/news/${rel.slug}`}
+                    className="group flex overflow-hidden rounded-xl border border-gray-100 shadow-sm hover:shadow-md hover:border-[#FFCC00] transition-all"
+                  >
+                    <div className="relative w-24 shrink-0 overflow-hidden bg-gray-50">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={rel.image || DEFAULT_NEWS_IMAGE}
+                        alt={relEn?.title || rel.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                    </div>
+                    <div className="flex flex-col justify-center p-4">
+                      <span
+                        className={`inline-block px-2 py-0.5 rounded-full text-xs font-semibold mb-1.5 w-fit ${categoryColors[rel.category]}`}
+                      >
+                        {categoryLabelsEn[rel.category]}
+                      </span>
+                      <p className="text-sm font-bold text-[#1A1A1A] group-hover:text-[#8B6914] transition-colors leading-snug line-clamp-2">
+                        {relEn?.title || rel.title}
+                      </p>
+                      <p className="text-xs text-gray-400 mt-1">{formatDate(rel.date, 'en')}</p>
+                    </div>
+                  </Link>
+                )
+              })}
             </div>
           </section>
         )}

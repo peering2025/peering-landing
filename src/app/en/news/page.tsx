@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { Navigation } from '@/components/Navigation'
 import { Footer } from '@/components/Footer'
 import { newsPosts } from '@/content/news'
+import { newsPostsEn } from '@/content/news-en'
 import { categoryColors, categoryLabelsEn, formatDate, DEFAULT_NEWS_IMAGE } from '@/lib/news-utils'
 
 export const metadata: Metadata = {
@@ -27,6 +28,8 @@ export const metadata: Metadata = {
 
 export default function EnNewsPage() {
   const [featured, ...rest] = newsPosts
+
+  const enPost = (slug: string) => newsPostsEn[slug]
 
   return (
     <>
@@ -59,7 +62,7 @@ export default function EnNewsPage() {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={featured.image || DEFAULT_NEWS_IMAGE}
-                  alt={featured.title}
+                  alt={enPost(featured.slug)?.title || featured.title}
                   className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
                 />
                 <span
@@ -76,10 +79,10 @@ export default function EnNewsPage() {
                   <span>{featured.readTime} min read</span>
                 </div>
                 <h2 className="text-xl sm:text-2xl font-bold text-[#1A1A1A] mb-3 group-hover:text-[#8B6914] transition-colors leading-snug">
-                  {featured.title}
+                  {enPost(featured.slug)?.title || featured.title}
                 </h2>
                 <p className="text-sm text-gray-500 leading-relaxed line-clamp-2 mb-5">
-                  {featured.excerpt}
+                  {enPost(featured.slug)?.excerpt || featured.excerpt}
                 </p>
                 <span className="inline-flex items-center gap-1.5 text-sm font-bold text-[#B38B00] group-hover:gap-2.5 transition-all">
                   Read more
@@ -104,7 +107,7 @@ export default function EnNewsPage() {
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={post.image || DEFAULT_NEWS_IMAGE}
-                      alt={post.title}
+                      alt={enPost(post.slug)?.title || post.title}
                       className="w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-500"
                     />
                   </div>
@@ -120,11 +123,11 @@ export default function EnNewsPage() {
                     </div>
 
                     <h2 className="text-sm font-bold text-[#1A1A1A] mb-2 group-hover:text-[#8B6914] transition-colors leading-snug line-clamp-2">
-                      {post.title}
+                      {enPost(post.slug)?.title || post.title}
                     </h2>
 
                     <p className="text-xs text-gray-500 leading-relaxed flex-1 line-clamp-3 mb-4">
-                      {post.excerpt}
+                      {enPost(post.slug)?.excerpt || post.excerpt}
                     </p>
 
                     <div className="flex items-center justify-between pt-3 border-t border-gray-50">

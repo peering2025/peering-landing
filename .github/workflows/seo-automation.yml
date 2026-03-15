@@ -44,5 +44,5 @@ jobs:
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git add src/content/news.ts
-          git diff --quiet && git diff --staged --quiet || (git commit -m "feat: SEO 자동 콘텐츠 업로드" && git push)
+          git add src/content/news.ts src/content/news-en.ts
+          git diff --quiet && git diff --staged --quiet || (git commit -m "feat: SEO 자동 콘텐츠 업로드 (KO+EN)" && git push)

@@ -14,15 +14,17 @@ export function Footer({ locale = 'ko' }: FooterProps) {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
           {/* Brand */}
           <div>
-            <Image
-              src="/images/피어링 로고 2.png"
-              alt="피어링 로고"
-              width={100}
-              height={32}
-              className="h-8 w-auto object-contain brightness-0 invert mb-4"
-              unoptimized
-              priority
-            />
+            <div className="inline-block bg-white rounded-xl px-3 py-2 mb-4">
+              <Image
+                src="/images/피어링 로고 2.png"
+                alt="피어링 로고"
+                width={100}
+                height={32}
+                className="h-7 w-auto object-contain"
+                unoptimized
+                priority
+              />
+            </div>
             <p className="text-sm leading-relaxed text-gray-500">
               {isKo
                 ? '특수교사를 위한 시간표 자동화 솔루션이에요.'
