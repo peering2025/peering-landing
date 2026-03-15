@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 :root {
   --background: #ffffff;
@@ -22,4 +23,69 @@ body {
   color: var(--foreground);
   font-family: var(--font-geist-sans), 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
   overflow-x: hidden;
+}
+
+/* ── 뉴스 아티클 prose 커스텀 스타일 ─────────────────────────────────────────
+   .news-prose 클래스를 prose prose-lg와 함께 사용합니다.
+   CSS 변수로 @tailwindcss/typography 테마를 피어링 브랜드에 맞게 재정의합니다.
+────────────────────────────────────────────────────────────────────────────── */
+.news-prose {
+  /* 본문 텍스트: 가독성 좋은 진한 그레이 */
+  --tw-prose-body:          #333333;
+  --tw-prose-lead:          #4B5563;
+
+  /* 제목: 브랜드 골드 (노란색 계열, 배경 흰색에서 가독성 확보) */
+  --tw-prose-headings:      #8B6914;
+
+  /* 강조·링크 */
+  --tw-prose-bold:          #1A1A1A;
+  --tw-prose-links:         #B38B00;
+
+  /* 리스트 */
+  --tw-prose-counters:      #6B7280;
+  --tw-prose-bullets:       #FFCC00;
+
+  /* 구분선·인용 */
+  --tw-prose-hr:            #E5E7EB;
+  --tw-prose-quotes:        #4B5563;
+  --tw-prose-quote-borders: #FFCC00;
+
+  /* 코드 */
+  --tw-prose-code:          #92700A;
+  --tw-prose-pre-bg:        #FFFDE0;
+  --tw-prose-pre-code:      #1A1A1A;
+}
+
+/* h2: 피어링 브랜드 노란 왼쪽 포인트 바 */
+.news-prose h2 {
+  padding-left: 0.875rem;
+  border-left: 4px solid #FFCC00;
+  line-height: 1.4;
+}
+
+/* h3: 골드 underline 포인트 */
+.news-prose h3 {
+  position: relative;
+  padding-bottom: 0.375rem;
+}
+.news-prose h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 2rem;
+  height: 2px;
+  background-color: #FFCC00;
+  border-radius: 9999px;
+}
+
+/* 리스트 항목 줄간격 넓히기 */
+.news-prose ul li,
+.news-prose ol li {
+  line-height: 1.8;
+}
+
+/* 본문 단락 줄간격 */
+.news-prose p {
+  line-height: 1.9;
 }

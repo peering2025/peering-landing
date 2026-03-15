@@ -8,6 +8,8 @@ export interface NewsPost {
   excerpt: string
   content: string // HTML string
   readTime: number // minutes
+  /** Unsplash 또는 외부 이미지 URL. 카드와 상세 페이지 상단에 표시됩니다. */
+  image?: string
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -23,6 +25,7 @@ export const newsPosts: NewsPost[] = [
     excerpt:
       '특수교육 실무사·지원인력 배정 시간표 관리, 피어링으로 충돌 없이 한눈에 해결하는 방법을 안내합니다.',
     readTime: 5,
+    image: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=800&q=80&auto=format&fit=crop',
     content: `
 <h2>특수교육 실무사 배정, 가장 복잡한 학기 초 업무</h2>
 <p>새 학기가 시작될 때마다 많은 특수교사 선생님들이 공통적으로 호소하는 업무가 있습니다. 바로 <strong>특수교육 실무사와 지원인력의 시간표 배정</strong>입니다. 학생 수, 교사 수업 시간, 지원인력의 가용 시간이 모두 맞물려야 하기 때문에 단 하나의 오류도 전체 시간표를 흔들어 놓습니다.</p>
@@ -64,6 +67,7 @@ export const newsPosts: NewsPost[] = [
     excerpt:
       '매 학기 반복되는 복잡한 특수학급 시간표 작성, 피어링을 활용해 훨씬 쉽게 완성하는 방법을 알려드립니다.',
     readTime: 5,
+    image: 'https://images.unsplash.com/photo-1506784365847-bbad939e9335?w=800&q=80&auto=format&fit=crop',
     content: `
 <h2>특수교육 시간표, 이렇게 하면 달라집니다</h2>
 <p>매 학기 초, 특수교사들이 가장 많은 시간을 쏟는 업무 중 하나가 바로 시간표 작성입니다. 원적학급 과목 확인, 시수 조율, 지원인력 배정까지 — 수십 개의 조각을 맞추는 퍼즐 같은 과정이죠. 피어링을 통해 이 과정을 효율화할 수 있는 5가지 팁을 소개합니다.</p>
@@ -94,6 +98,7 @@ export const newsPosts: NewsPost[] = [
     excerpt:
       '새 학기를 맞아 피어링에 여러 새로운 기능이 추가되었습니다. 주요 업데이트 내역을 확인해 보세요.',
     readTime: 3,
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80&auto=format&fit=crop',
     content: `
 <h2>2025년 1학기를 맞아 피어링이 업데이트되었습니다</h2>
 <p>새 학기 준비에 바쁘신 특수교사 선생님들을 위해 피어링이 더욱 편리해졌습니다. 이번 업데이트의 주요 내용을 안내해 드립니다.</p>
@@ -122,6 +127,7 @@ export const newsPosts: NewsPost[] = [
     excerpt:
       '일반 시간표 앱과 엑셀로는 특수학급의 복잡한 시간표를 다루기 어렵습니다. 특수교육만의 특성과 전용 솔루션이 필요한 이유를 설명합니다.',
     readTime: 6,
+    image: 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=800&q=80&auto=format&fit=crop',
     content: `
 <h2>왜 특수교육에는 전용 툴이 필요할까요?</h2>
 <p>많은 특수교사 선생님들이 여전히 엑셀이나 일반 시간표 앱으로 학급 운영 업무를 처리하고 계십니다. 하지만 특수교육 현장은 일반 학급과 근본적으로 다른 특성을 가지고 있습니다.</p>
@@ -150,6 +156,7 @@ export const newsPosts: NewsPost[] = [
     excerpt:
       '특수교사 전용 시간표 관리 솔루션 피어링이 정식으로 출시되었습니다. 출시 기념 스페셜 멤버십 혜택도 확인해 보세요.',
     readTime: 2,
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80&auto=format&fit=crop',
     content: `
 <h2>피어링이 정식 출시되었습니다</h2>
 <p>특수교사 선생님들의 업무를 더 쉽게 만들기 위해 오랫동안 준비해 온 피어링이 드디어 정식 서비스를 시작합니다.</p>

@@ -8,7 +8,8 @@
  *   1. src/content/news.ts를 읽어 기존 제목·슬러그 추출 (중복 방지)
  *   2. 주제 풀에서 랜덤 힌트 5개를 선택해 Claude에 전달
  *   3. Claude가 완전한 NewsPost JSON 생성
- *   4. news.ts의 newsPosts 배열 맨 앞에 새 글 삽입
+ *   4. 글 주제 키워드로 Unsplash 이미지 자동 배정
+ *   5. news.ts의 newsPosts 배열 맨 앞에 새 글 삽입
  * ─────────────────────────────────────────────────────────────────────────────
  */
 
@@ -17,14 +18,85 @@ import { readFileSync, writeFileSync } from 'fs'
 import { fileURLToPath } from 'url'
 import { join, dirname } from 'path'
 
-// ── 경로 설정 ─────────────────────────────────────────────────────────────────
+// ── 경로 설정 ──────────────────────────────────────────────────────────────────
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const CONTENT_PATH = join(__dirname, '../src/content/news.ts')
 
-// ── Anthropic 클라이언트 ──────────────────────────────────────────────────────
+// ── Anthropic 클라이언트 ────────────────────────────────────────────────────────
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
 
-// ── 주제 영감 풀 (Claude가 선택하거나 유사한 신규 주제를 자유롭게 생성) ──────
+// ── 이미지 풀: 주제 카테고리별 큐레이션된 Unsplash 이미지 ──────────────────────
+// 각 URL은 교육·수업·계획·협업 테마의 고품질 사진입니다.
+const IMAGE_POOL = {
+  /** 수업·교실·학생 지원 */
+  classroom: [
+    'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=800&q=80&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=800&q=80&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1571260899304-425eee4c7efc?w=800&q=80&auto=format&fit=crop',
+  ],
+  /** 시간표·계획·일정 관리 */
+  planning: [
+    'https://images.unsplash.com/photo-1506784365847-bbad939e9335?w=800&q=80&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&q=80&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&q=80&auto=format&fit=crop',
+  ],
+  /** 협업·팀워크 */
+  collaboration: [
+    'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&q=80&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80&auto=format&fit=crop',
+  ],
+  /** 학습·도서·연구 */
+  study: [
+    'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=800&q=80&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=800&q=80&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800&q=80&auto=format&fit=crop',
+  ],
+  /** 소프트웨어·업데이트·데이터 */
+  technology: [
+    'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&q=80&auto=format&fit=crop',
+  ],
+  /** 교사·강의·발표 */
+  teaching: [
+    'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800&q=80&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1588072432836-e10032774350?w=800&q=80&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1544531585-9847b68c8c86?w=800&q=80&auto=format&fit=crop',
+  ],
+}
+
+/**
+ * 글 제목·카테고리 키워드를 분석하여 가장 어울리는 Unsplash 이미지 URL 반환
+ * @param {string} title - 글 제목
+ * @param {string} category - 글 카테고리
+ * @returns {string} Unsplash 이미지 URL
+ */
+function pickImage(title, category) {
+  const text = `${title} ${category}`.toLowerCase()
+
+  let pool
+  if (/업데이트|출시|기능|신기능|버전/.test(text)) {
+    pool = IMAGE_POOL.technology
+  } else if (/협업|공동편집|팀|실무사|지원인력|배정/.test(text)) {
+    pool = IMAGE_POOL.collaboration
+  } else if (/시간표|일정|계획|스케줄|시수|편성/.test(text)) {
+    pool = IMAGE_POOL.planning
+  } else if (/수업|학급|교실|학생|장애|특수교육/.test(text)) {
+    pool = IMAGE_POOL.classroom
+  } else if (/교사|강의|발표|안내|공지/.test(text)) {
+    pool = IMAGE_POOL.teaching
+  } else {
+    pool = IMAGE_POOL.study
+  }
+
+  // 풀에서 랜덤 선택
+  return pool[Math.floor(Math.random() * pool.length)]
+}
+
+// ── 주제 영감 풀 ────────────────────────────────────────────────────────────────
 const TOPIC_POOL = [
   '특수교육 시수 계산 오류를 줄이는 실전 방법',
   'IEP 개별화교육계획 작성 시 시간표 연계 노하우',
@@ -50,17 +122,15 @@ const TOPIC_POOL = [
   '특수교사와 특수교육 실무사 협업 시간표 조율 노하우',
 ]
 
-// ── 유틸: 배열 셔플 ───────────────────────────────────────────────────────────
+// ── 유틸 ────────────────────────────────────────────────────────────────────────
 function shuffle(arr) {
   return [...arr].sort(() => Math.random() - 0.5)
 }
 
-// ── 유틸: TypeScript 단일 따옴표 문자열용 이스케이프 ─────────────────────────
 function escapeForTs(str) {
   return String(str).replace(/\\/g, '\\\\').replace(/'/g, "\\'")
 }
 
-// ── 유틸: 템플릿 리터럴(`...`)용 이스케이프 ──────────────────────────────────
 function escapeForTemplateLiteral(str) {
   return String(str)
     .replace(/\\/g, '\\\\')
@@ -68,7 +138,7 @@ function escapeForTemplateLiteral(str) {
     .replace(/\$\{/g, '\\${')
 }
 
-// ── 메인 ──────────────────────────────────────────────────────────────────────
+// ── 메인 ────────────────────────────────────────────────────────────────────────
 async function main() {
   // 1. 기존 news.ts 읽기
   const currentContent = readFileSync(CONTENT_PATH, 'utf-8')
@@ -128,7 +198,7 @@ ${hints.map((t) => `• ${t}`).join('\n')}
   })
 
   const responseText = message.content[0].text
-  console.log('\n📄 Claude 응답 수신 완료')
+  console.log('📄 Claude 응답 수신 완료')
 
   // 6. JSON 파싱
   const jsonMatch = responseText.match(/```json\n([\s\S]*?)\n```/)
@@ -162,13 +232,17 @@ ${hints.map((t) => `• ${t}`).join('\n')}
     process.exit(1)
   }
 
-  // 9. excerpt 길이 검증 (80자 초과 시 자동 자름)
+  // 9. excerpt 80자 초과 시 자동 자름
   if (post.excerpt.length > 80) {
     console.warn(`⚠️  excerpt ${post.excerpt.length}자 → 80자로 자름`)
     post.excerpt = post.excerpt.slice(0, 79) + '…'
   }
 
-  // 10. TypeScript 소스 코드 생성
+  // 10. 이미지 자동 배정 (제목·카테고리 키워드 분석)
+  post.image = pickImage(post.title, post.category)
+  console.log(`\n🖼️  이미지 배정: ${post.image}`)
+
+  // 11. TypeScript 소스 코드 생성
   const postTs = `
   {
     slug: '${escapeForTs(post.slug)}',
@@ -178,12 +252,13 @@ ${hints.map((t) => `• ${t}`).join('\n')}
     excerpt:
       '${escapeForTs(post.excerpt)}',
     readTime: ${Number(post.readTime)},
+    image: '${post.image}',
     content: \`
 ${escapeForTemplateLiteral(post.content)}
     \`.trim(),
   },`
 
-  // 11. news.ts에 첫 번째 요소로 삽입
+  // 12. news.ts에 첫 번째 요소로 삽입
   const MARKER = 'export const newsPosts: NewsPost[] = ['
   const markerIndex = currentContent.indexOf(MARKER)
 
@@ -198,14 +273,14 @@ ${escapeForTemplateLiteral(post.content)}
 
   writeFileSync(CONTENT_PATH, newContent, 'utf-8')
 
-  // 12. 결과 출력
+  // 13. 결과 출력
   console.log('\n✅ 새 글 추가 완료!')
   console.log(`   제목     : ${post.title}`)
   console.log(`   슬러그   : ${post.slug}`)
   console.log(`   날짜     : ${post.date}`)
   console.log(`   카테고리 : ${post.category}`)
   console.log(`   읽는 시간: ${post.readTime}분`)
-  console.log(`   excerpt  : ${post.excerpt}`)
+  console.log(`   이미지   : ${post.image}`)
   console.log(`\n📍 URL 경로: /news/${post.slug}`)
 }
 
