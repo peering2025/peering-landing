@@ -294,6 +294,13 @@ ${escapeForTemplateLiteral(post.content)}
 }
 
 main().catch((err) => {
+  // 크레딧 부족 오류는 워크플로우를 실패시키지 않고 경고만 출력
+  if (err?.status === 400 && err?.error?.error?.message?.includes('credit balance')) {
+    console.warn('⚠️  Anthropic API 크레딧이 부족합니다.')
+    console.warn('   해결 방법: https://console.anthropic.com → Plans & Billing → 크레딧 충전')
+    console.warn('   이번 실행은 건너뜁니다. 크레딧 충전 후 다시 실행해 주세요.')
+    process.exit(0) // 워크플로우를 실패(❌)가 아닌 정상 종료로 처리
+  }
   console.error('❌ 예상치 못한 오류:', err)
   process.exit(1)
 })
