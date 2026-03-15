@@ -5,6 +5,11 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
+  async rewrites() {
+    return [
+      { source: '/rss.xml', destination: '/rss' },
+    ]
+  },
 };
 
 export default nextConfig;
