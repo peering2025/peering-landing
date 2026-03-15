@@ -110,6 +110,11 @@ function pickImage(title, category) {
 
 // ── 주제 영감 풀 ────────────────────────────────────────────────────────────────
 const TOPIC_POOL = [
+  // B2B 구매 의도 키워드 (우선 배치)
+  '특수학급 시간표 솔루션 도입 전 반드시 확인해야 할 체크리스트',
+  '특수교사 업무 자동화 툴 비교: 피어링이 선택받는 이유',
+  '특수학급 시간표 프로그램 구매 가이드 — 교육청 예산 활용법',
+  '학교 특수교육 디지털 전환: 시간표 관리 시스템 도입 성공 사례',
   '특수교육 시수 계산 오류를 줄이는 실전 방법',
   'IEP 개별화교육계획 작성 시 시간표 연계 노하우',
   '원적학급 통합교육 시간표 조율 완벽 가이드',
@@ -203,7 +208,30 @@ ${hints.map((t) => `• ${t}`).join('\n')}
 • 마지막 단락에 피어링 솔루션을 자연스럽게 언급하며 마무리
 • 한국어: 전문적이고 정중한 특수교사 어조 / 영어: professional tone for special education teachers
 • ⚠️ 백틱(\`) 문자 절대 사용 금지 — 단어 강조는 <strong> 태그로 대체
-• ⚠️ HTML 엔티티(\\&amp; 등) 사용 금지, 특수문자 직접 사용`
+• ⚠️ HTML 엔티티(\\&amp; 등) 사용 금지, 특수문자 직접 사용
+• ✅ 본문 마지막에 반드시 아래 둘 중 하나를 포함하세요 (체류 시간 3분 30초 목표):
+
+  [옵션 A] 3분 핵심 요약 박스:
+  <div class="summary-box" style="background:#FFFDE0;border-left:4px solid #FFCC00;padding:1.25rem 1.5rem;border-radius:0.75rem;margin-top:2rem;">
+    <strong style="font-size:1rem;">📌 특수교사를 위한 3분 핵심 요약</strong>
+    <ul style="margin-top:0.75rem;padding-left:1.25rem;">
+      <li>핵심 포인트 1</li>
+      <li>핵심 포인트 2</li>
+      <li>핵심 포인트 3</li>
+    </ul>
+  </div>
+
+  [옵션 B] 현장 실천 체크리스트 박스:
+  <div class="checklist-box" style="background:#F0FDF4;border-left:4px solid #22C55E;padding:1.25rem 1.5rem;border-radius:0.75rem;margin-top:2rem;">
+    <strong style="font-size:1rem;">✅ 현장 실천 체크리스트</strong>
+    <ul style="margin-top:0.75rem;padding-left:1.25rem;list-style:none;">
+      <li>☐ 실천 항목 1</li>
+      <li>☐ 실천 항목 2</li>
+      <li>☐ 실천 항목 3</li>
+    </ul>
+  </div>
+
+  content_en도 동일한 박스를 영어로 번역하여 포함하세요.`
 
   console.log('\n🤖 Gemini API 호출 중...')
 

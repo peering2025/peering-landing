@@ -46,28 +46,53 @@ export default async function NewsDetailPage({ params }: Props) {
 
   const related = newsPosts.filter((p) => p.slug !== slug).slice(0, 2)
   const heroImage = post.image || DEFAULT_NEWS_IMAGE
+  const BASE_URL = 'https://peeringedu.com'
 
   const articleSchema = {
     '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
+    '@type': 'NewsArticle',
     headline: post.title,
     description: post.excerpt,
     image: heroImage,
     datePublished: post.date,
+    dateModified: post.date,
+    inLanguage: 'ko',
     author: {
       '@type': 'Organization',
       name: '피어링 (Peering)',
-      url: 'https://peeringedu.com',
+      url: BASE_URL,
     },
     publisher: {
       '@type': 'Organization',
       name: '피어링 (Peering)',
-      url: 'https://peeringedu.com',
+      url: BASE_URL,
+      logo: { '@type': 'ImageObject', url: `${BASE_URL}/logo.png` },
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `https://peeringedu.com/news/${slug}`,
+      '@id': `${BASE_URL}/news/${slug}`,
     },
+  }
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: '홈', item: BASE_URL },
+      { '@type': 'ListItem', position: 2, name: '소식', item: `${BASE_URL}/news` },
+      { '@type': 'ListItem', position: 3, name: post.title, item: `${BASE_URL}/news/${slug}` },
+    ],
+  }
+
+  const organizationSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: '피어링 (Peering)',
+    url: BASE_URL,
+    applicationCategory: 'EducationApplication',
+    description: '특수학급 시간표 제작과 시수 관리를 돕는 특수교사 전용 업무 솔루션',
+    operatingSystem: 'Web',
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'KRW' },
   }
 
   return (
@@ -75,6 +100,14 @@ export default async function NewsDetailPage({ params }: Props) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
       />
       <Navigation locale="ko" />
 

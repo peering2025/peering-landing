@@ -14,6 +14,55 @@ export interface NewsPostEn {
 // 새 영문 글을 추가하려면 이 객체 맨 앞에 항목을 추가하세요.
 // ─────────────────────────────────────────────────────────────────────────────
 export const newsPostsEn: Record<string, NewsPostEn> = {
+  'timetable-solution-adoption-checklist': {
+    title: '7 Must-Check Items Before Adopting a Special Education Timetable Solution',
+    excerpt:
+      'A practical checklist for special education teachers evaluating timetable software — avoid costly mistakes before you buy.',
+    content: `
+<h2>Why Pre-Adoption Due Diligence Matters</h2>
+<p>More schools are adopting timetable management solutions for special education classrooms. Yet many teachers report disappointment after purchase — the tool didn't match real-world needs. Without careful evaluation, you risk adding workload instead of reducing it, and ultimately abandoning the software altogether.</p>
+<p>This guide provides <strong>7 essential checks</strong> before committing to any special education timetable solution — covering budget, usability, data security, and long-term support.</p>
+
+<h2>The 7-Point Evaluation Checklist</h2>
+
+<h3>1. Does it truly understand special education complexity?</h3>
+<p>Special education timetables are fundamentally different from general classroom schedules. They must handle inclusive education hours, IEP-linked support, teaching assistant allocation, and related services. <strong>Generic school scheduling tools often lack these critical features.</strong> Verify that the solution was designed with special education in mind.</p>
+
+<h3>2. Can it be purchased within your school budget?</h3>
+<p>Most school technology purchases flow through education office grants or school activity budgets. Before committing, check whether your district or special education support office offers procurement support. Solutions like Peering that provide school-level quotes simplify the administrative process considerably.</p>
+
+<h3>3. Can a single teacher operate it independently?</h3>
+<p>Special education classroom teachers typically work alone. Tools requiring extensive training or separate administrator access are impractical. <strong>Test whether you can go from sign-up to a completed timetable in under 5 minutes</strong> using a free trial or demo.</p>
+
+<h3>4. Are there limits on student or classroom numbers?</h3>
+<p>Some solutions cap the number of students or classrooms per subscription tier. If your school has multiple special education classrooms or includes itinerant teachers, confirm the solution scales to your actual needs without unexpected costs.</p>
+
+<h3>5. Is data security and privacy handling transparent?</h3>
+<p>Timetables include sensitive information — student names, disability categories, and support levels. Verify that the solution complies with applicable privacy laws, stores data on domestic servers, and has a clear data deletion policy at contract end.</p>
+
+<h3>6. Can mid-semester changes be applied quickly?</h3>
+<p>Student transfers, IEP revisions, and teaching assistant changes happen throughout the school year. <strong>Check whether updates take only a few clicks</strong> and whether a change history log is available — these features make a solution viable for long-term use.</p>
+
+<h3>7. Is responsive post-adoption support available?</h3>
+<p>Questions and issues will arise after implementation. Confirm that the vendor offers accessible support channels — KakaoTalk, email, or phone — and ask about typical response times before making your decision.</p>
+
+<h2>Peering Is Built to Meet All 7 Criteria</h2>
+<p>Peering was developed through direct feedback from practicing special education teachers. It handles IEP integration, teaching assistant scheduling, and inclusive education timetables in a single view. Consultations are available instantly through KakaoTalk. Use the checklist below to compare any solution you're considering.</p>
+
+<div class="checklist-box" style="background:#F0FDF4;border-left:4px solid #22C55E;padding:1.25rem 1.5rem;border-radius:0.75rem;margin-top:2rem;">
+  <strong style="font-size:1rem;">✅ Pre-Adoption Checklist</strong>
+  <ul style="margin-top:0.75rem;padding-left:1.25rem;list-style:none;">
+    <li>☐ Provides special-ed-specific features: IEP linking, TA assignment, inclusive scheduling?</li>
+    <li>☐ Fits within school budget (activity funds / special education operating budget)?</li>
+    <li>☐ Single teacher can build a complete timetable in under 5 minutes?</li>
+    <li>☐ Supports your school's student and classroom count without restrictions?</li>
+    <li>☐ Privacy law compliant with domestic server storage confirmed?</li>
+    <li>☐ Mid-semester changes apply instantly with change history logging?</li>
+    <li>☐ Fast support via KakaoTalk, email, or phone is available?</li>
+  </ul>
+</div>
+    `.trim(),
+  },
   'iep-timetable-integration-guide': {
     title: 'Linking IEP Goals with Your Special Education Timetable',
     excerpt:
