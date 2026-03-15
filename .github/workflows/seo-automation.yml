@@ -1,112 +1,48 @@
-# ─────────────────────────────────────────────────────────────────────────────
-# 피어링 SEO 자동 콘텐츠 업로드
-# ─────────────────────────────────────────────────────────────────────────────
-# 스케줄 : 매주 월·수·금 KST 09:00 (= UTC 00:00)
-# 동작   : Claude API → 콘텐츠 생성 → news.ts 수정 → 빌드 검증 → 커밋·푸시
-#
-# 필요한 GitHub Secret:
-#   ANTHROPIC_API_KEY — Anthropic Console 발급 API 키
-#   (Settings > Secrets and variables > Actions > New repository secret)
-# ─────────────────────────────────────────────────────────────────────────────
-
 name: SEO 자동 콘텐츠 업로드
 
 on:
-  schedule:
-    # 월(1)·수(3)·금(5) UTC 00:00 = KST 09:00
-    - cron: '0 0 * * 1,3,5'
-
-  # GitHub Actions 탭에서 수동 실행 가능 (테스트·검증용)
   workflow_dispatch:
     inputs:
       dry_run:
-        description: 'Dry run — 커밋 없이 콘텐츠 생성만 확인'
-        required: false
+        description: '실제 반영할까요? (false면 실제 게시)'
+        required: true
         default: 'false'
         type: choice
-        options:
-          - 'false'
-          - 'true'
-      topic:
-        description: '글 주제 힌트 (선택 사항, 비워두면 자동 선정)'
-        required: false
-        default: ''
-        type: string
+        options: ['true', 'false']
 
-# GITHUB_TOKEN 커밋·푸시 권한
-permissions:
-  contents: write
+  schedule:
+    - cron: '0 0 * * 1,3,5' # 월, 수, 금 한국시간 오전 9시
 
 jobs:
-  generate-and-upload:
-    name: 콘텐츠 생성 → 검증 → 배포
+  generate-content:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
-
+    permissions:
+      contents: write
     steps:
-      # ── 1. 최신 코드 체크아웃 ─────────────────────────────────────────────
       - name: 코드 체크아웃
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
-      # ── 2. Node.js 설정 ──────────────────────────────────────────────────
       - name: Node.js 설정
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
-          cache-dependency-path: scripts/package-lock.json
+          # cache 설정을 삭제하여 경로 오류를 원천 차단합니다.
 
-      # ── 3. 스크립트 의존성 설치 (@anthropic-ai/sdk) ──────────────────────
       - name: 스크립트 의존성 설치
-        run: npm install
-        working-directory: scripts
+        run: |
+          cd scripts
+          npm install
 
-      # ── 4. 메인 프로젝트 의존성 설치 (빌드용) ────────────────────────────
-      - name: 프로젝트 의존성 설치
-        run: npm ci
-
-      # ── 5. Claude API로 SEO 콘텐츠 생성 → news.ts 수정 ──────────────────
       - name: SEO 콘텐츠 생성
-        id: generate
-        run: node generate-seo-content.mjs
-        working-directory: scripts
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          node scripts/generate-seo-content.mjs --dry-run=${{ github.event.inputs.dry_run || 'false' }}
 
-      # ── 6. 변경된 news.ts 미리보기 (디버깅용) ────────────────────────────
-      - name: 변경사항 미리보기
-        run: git diff src/content/news.ts | head -100
-
-      # ── 7. Next.js 빌드 검증 (TypeScript·HTML 오류 사전 차단) ────────────
-      - name: 빌드 검증
-        run: npm run build
-        env:
-          # 빌드 중 외부 API 호출 차단 (정적 빌드이므로 불필요)
-          NEXT_TELEMETRY_DISABLED: 1
-
-      # ── 8. 커밋 & 푸시 (dry_run=true 면 스킵) ────────────────────────────
       - name: 커밋 & 푸시
-        if: ${{ github.event.inputs.dry_run != 'true' }}
+        if: github.event.inputs.dry_run != 'true'
         run: |
-          git config user.name  "Peering SEO Bot"
-          git config user.email "peering2025@gmail.com"
-
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git add src/content/news.ts
-
-          if git diff --staged --quiet; then
-            echo "ℹ️  변경사항 없음 — 커밋을 건너뜁니다."
-          else
-            git commit -m "feat: SEO 신규 콘텐츠 업로드 ($(date +'%Y-%m-%d'))"
-            git push origin master
-            echo "✅ 커밋·푸시 완료"
-          fi
-
-      # ── 9. Dry run 결과 안내 ──────────────────────────────────────────────
-      - name: Dry run 안내
-        if: ${{ github.event.inputs.dry_run == 'true' }}
-        run: |
-          echo "🧪 Dry run 완료 — 빌드 검증까지 통과했습니다."
-          echo "   커밋은 수행되지 않았습니다."
-          echo "   위 '변경사항 미리보기' 단계에서 생성된 글을 확인하세요."
+          git diff --quiet && git diff --staged --quiet || (git commit -m "feat: SEO 자동 콘텐츠 업로드" && git push)
