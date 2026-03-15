@@ -1,5 +1,8 @@
 import { newsPosts } from '@/content/news'
 
+// 빌드 시 정적 파일로 사전 생성 — CDN 캐시 오염 방지
+export const dynamic = 'force-static'
+
 const BASE_URL = 'https://peeringedu.com'
 
 /** XML 특수문자를 모두 이스케이프합니다 */
@@ -46,7 +49,6 @@ ${items}
   return new Response(xml, {
     headers: {
       'Content-Type': 'application/xml; charset=utf-8',
-      'Cache-Control': 'public, max-age=3600, stale-while-revalidate=86400',
     },
   })
 }
