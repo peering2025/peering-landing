@@ -6,8 +6,21 @@ export const categoryColors: Record<NewsCategory, string> = {
   '공지사항': 'bg-gray-100 text-gray-600',
 }
 
-export function formatDate(dateStr: string): string {
+export const categoryLabelsEn: Record<NewsCategory, string> = {
+  '업데이트': 'Updates',
+  '팁 & 노하우': 'Tips & How-To',
+  '공지사항': 'Announcements',
+}
+
+export function formatDate(dateStr: string, locale: 'ko' | 'en' = 'ko'): string {
   const [year, month, day] = dateStr.split('-')
+  if (locale === 'en') {
+    const months = [
+      'January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December',
+    ]
+    return `${months[parseInt(month) - 1]} ${parseInt(day)}, ${year}`
+  }
   return `${year}년 ${month}월 ${day}일`
 }
 

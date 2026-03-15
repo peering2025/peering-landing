@@ -22,16 +22,16 @@ export function Navigation({ locale = 'ko' }: NavigationProps) {
 
   const navLinks = isKo
     ? [
-        { label: '기능 소개', href: '#features' },
-        { label: '요금제', href: '#pricing' },
-        { label: '도입 문의', href: '#contact' },
+        { label: '기능 소개', href: '/#features' },
+        { label: '요금제', href: '/#pricing' },
+        { label: '도입 문의', href: '/#contact' },
         { label: '소식', href: '/news', isPage: true },
       ]
     : [
-        { label: 'Features', href: '#features' },
-        { label: 'Pricing', href: '#pricing' },
-        { label: 'Contact', href: '#contact' },
-        { label: 'News', href: '/news', isPage: true },
+        { label: 'Features', href: '/en#features' },
+        { label: 'Pricing', href: '/en#pricing' },
+        { label: 'Contact', href: '/en#contact' },
+        { label: 'News', href: '/en/news', isPage: true },
       ]
 
   return (
@@ -100,7 +100,7 @@ export function Navigation({ locale = 'ko' }: NavigationProps) {
         <button
           className="md:hidden p-2"
           onClick={() => setIsOpen(!isOpen)}
-          aria-label="메뉴 열기"
+          aria-label={isKo ? '메뉴 열기' : 'Open menu'}
         >
           <div className="space-y-1.5">
             <span className={`block w-6 h-0.5 bg-gray-700 transition-all duration-300 ${isOpen ? 'translate-y-2 rotate-45' : ''}`} />
@@ -148,7 +148,7 @@ export function Navigation({ locale = 'ko' }: NavigationProps) {
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-[#FFCC00] text-[#1A1A1A] text-sm font-bold"
             >
-              카카오톡으로 빠른 상담하기
+              {isKo ? '카카오톡으로 빠른 상담하기' : 'Chat on KakaoTalk'}
             </a>
           </div>
         </div>

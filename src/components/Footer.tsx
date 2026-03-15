@@ -21,6 +21,7 @@ export function Footer({ locale = 'ko' }: FooterProps) {
               height={32}
               className="h-8 w-auto object-contain brightness-0 invert mb-4"
               unoptimized
+              priority
             />
             <p className="text-sm leading-relaxed text-gray-500">
               {isKo
@@ -44,28 +45,28 @@ export function Footer({ locale = 'ko' }: FooterProps) {
             </div>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="#features" className="hover:text-white transition-colors">
+                <a href={isKo ? '/#features' : '/en#features'} className="hover:text-white transition-colors">
                   {isKo ? '기능 소개' : 'Features'}
                 </a>
               </li>
               <li>
-                <a href="#pricing" className="hover:text-white transition-colors">
+                <a href={isKo ? '/#pricing' : '/en#pricing'} className="hover:text-white transition-colors">
                   {isKo ? '요금제' : 'Pricing'}
                 </a>
               </li>
               <li>
-                <a href="#contact" className="hover:text-white transition-colors">
+                <a href={isKo ? '/#contact' : '/en#contact'} className="hover:text-white transition-colors">
                   {isKo ? '도입 문의' : 'Contact'}
                 </a>
               </li>
               <li>
-                <a href="#faq" className="hover:text-white transition-colors">
+                <a href={isKo ? '/#faq' : '/en#faq'} className="hover:text-white transition-colors">
                   {isKo ? '자주 묻는 질문' : 'FAQ'}
                 </a>
               </li>
               <li>
                 <Link
-                  href="/news"
+                  href={isKo ? '/news' : '/en/news'}
                   className="hover:text-white transition-colors"
                 >
                   {isKo ? '소식' : 'News'}
