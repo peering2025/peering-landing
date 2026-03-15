@@ -35,7 +35,7 @@ jobs:
 
       - name: SEO 콘텐츠 생성
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
           node scripts/generate-seo-content.mjs --dry-run=${{ github.event.inputs.dry_run || 'false' }}
 

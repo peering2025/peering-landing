@@ -2,18 +2,18 @@
  * 피어링 SEO 자동화 스크립트
  * ─────────────────────────────────────────────────────────────────────────────
  * 실행: scripts/ 디렉토리에서 `node generate-seo-content.mjs`
- * 환경변수: ANTHROPIC_API_KEY
+ * 환경변수: GEMINI_API_KEY
  *
  * 동작:
  *   1. src/content/news.ts를 읽어 기존 제목·슬러그 추출 (중복 방지)
- *   2. 주제 풀에서 랜덤 힌트 5개를 선택해 Claude에 전달
- *   3. Claude가 완전한 NewsPost JSON 생성
+ *   2. 주제 풀에서 랜덤 힌트 5개를 선택해 Gemini에 전달
+ *   3. Gemini가 완전한 NewsPost JSON 생성
  *   4. 글 주제 키워드로 Unsplash 이미지 자동 배정
  *   5. news.ts의 newsPosts 배열 맨 앞에 새 글 삽입
  * ─────────────────────────────────────────────────────────────────────────────
  */
 
-import Anthropic from '@anthropic-ai/sdk'
+import { GoogleGenerativeAI } from '@google/generative-ai'
 import { readFileSync, writeFileSync } from 'fs'
 import { fileURLToPath } from 'url'
 import { join, dirname } from 'path'
@@ -22,8 +22,9 @@ import { join, dirname } from 'path'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const CONTENT_PATH = join(__dirname, '../src/content/news.ts')
 
-// ── Anthropic 클라이언트 ────────────────────────────────────────────────────────
-const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
+// ── Google Gemini 클라이언트 ────────────────────────────────────────────────────
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY)
+const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' })
 
 // ── 이미지 풀: 주제 카테고리별 큐레이션된 Unsplash 이미지 ──────────────────────
 // 각 URL은 교육·수업·계획·협업 테마의 고품질 사진입니다.
@@ -167,7 +168,7 @@ async function main() {
   // 4. 주제 힌트 5개 랜덤 선택
   const hints = shuffle(TOPIC_POOL).slice(0, 5)
 
-  // 5. Claude 프롬프트 구성
+  // 5. Gemini 프롬프트 구성
   const prompt = `당신은 피어링(Peering) SEO 콘텐츠 전문 작가입니다.
 피어링은 특수학급 시간표 제작과 시수 관리를 돕는 특수교사 전용 업무 솔루션입니다.
 
@@ -196,23 +197,18 @@ ${hints.map((t) => `• ${t}`).join('\n')}
 • 마지막 단락에 피어링 솔루션을 자연스럽게 언급하며 마무리
 • 전문적이고 정중한 특수교사 어조
 • ⚠️ 백틱(\`) 문자 절대 사용 금지 — 단어 강조는 <strong> 태그로 대체
-• ⚠️ HTML 엔티티(\&amp; 등) 사용 금지, 한글 특수문자 직접 사용`
+• ⚠️ HTML 엔티티(\\&amp; 등) 사용 금지, 한글 특수문자 직접 사용`
 
-  console.log('\n🤖 Claude API 호출 중...')
+  console.log('\n🤖 Gemini API 호출 중...')
 
-  const message = await client.messages.create({
-    model: 'claude-sonnet-4-6',
-    max_tokens: 4096,
-    messages: [{ role: 'user', content: prompt }],
-  })
-
-  const responseText = message.content[0].text
-  console.log('📄 Claude 응답 수신 완료')
+  const result = await model.generateContent(prompt)
+  const responseText = result.response.text()
+  console.log('📄 Gemini 응답 수신 완료')
 
   // 6. JSON 파싱
   const jsonMatch = responseText.match(/```json\n([\s\S]*?)\n```/)
   if (!jsonMatch) {
-    console.error('❌ JSON 코드 블록을 찾을 수 없습니다. Claude 응답:')
+    console.error('❌ JSON 코드 블록을 찾을 수 없습니다. Gemini 응답:')
     console.error(responseText)
     process.exit(1)
   }
@@ -294,11 +290,11 @@ ${escapeForTemplateLiteral(post.content)}
 }
 
 main().catch((err) => {
-  // 크레딧 부족 오류는 워크플로우를 실패시키지 않고 경고만 출력
-  if (err?.status === 400 && err?.error?.error?.message?.includes('credit balance')) {
-    console.warn('⚠️  Anthropic API 크레딧이 부족합니다.')
-    console.warn('   해결 방법: https://console.anthropic.com → Plans & Billing → 크레딧 충전')
-    console.warn('   이번 실행은 건너뜁니다. 크레딧 충전 후 다시 실행해 주세요.')
+  // 할당량 초과 오류는 워크플로우를 실패시키지 않고 경고만 출력
+  if (err?.status === 429 || err?.message?.includes('quota') || err?.message?.includes('RESOURCE_EXHAUSTED')) {
+    console.warn('⚠️  Gemini API 할당량이 초과되었습니다.')
+    console.warn('   해결 방법: https://console.cloud.google.com → API 할당량 확인')
+    console.warn('   이번 실행은 건너뜁니다. 잠시 후 다시 실행해 주세요.')
     process.exit(0) // 워크플로우를 실패(❌)가 아닌 정상 종료로 처리
   }
   console.error('❌ 예상치 못한 오류:', err)

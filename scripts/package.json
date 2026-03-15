@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "피어링 SEO 자동화 스크립트 — Anthropic SDK를 사용해 뉴스 콘텐츠를 생성합니다.",
+  "description": "피어링 SEO 자동화 스크립트 — Google Gemini API를 사용해 뉴스 콘텐츠를 생성합니다.",
   "dependencies": {
-    "@anthropic-ai/sdk": "latest"
+    "@google/generative-ai": "latest"
   }
 }
