@@ -14,6 +14,66 @@ export interface NewsPostEn {
 // 새 영문 글을 추가하려면 이 객체 맨 앞에 항목을 추가하세요.
 // ─────────────────────────────────────────────────────────────────────────────
 export const newsPostsEn: Record<string, NewsPostEn> = {
+  'special-school-vs-class-timetable': {
+    title: 'Special Schools vs. Special Ed Classrooms: How Their Timetables Differ',
+    excerpt:
+      'Special schools have fixed timetables, but special ed classrooms must coordinate with each student\'s home class — and can change every week.',
+    content: `
+<h2>Same Special Education, Completely Different Timetable Realities</h2>
+<p>People new to special education often assume special schools and special education classrooms within regular schools operate similarly. In practice, their timetable structures are fundamentally different — and so is the administrative burden placed on their teachers.</p>
+
+<h2>Special Schools: Fixed Timetables Set by the Whole School</h2>
+<p>Special schools serve only students with disabilities. Because every student is a special education recipient, timetables are created at the school level — similar to how regular schools operate. Subject teachers are assigned, and each class has a weekly schedule finalized at the start of each semester.</p>
+<p>The key advantage: <strong>there are almost no external variables</strong>. Students don't have a home class in a regular school, so there's no need to coordinate with other classrooms. Once finalized, the timetable stays the same throughout the semester unless there's a special event or staff absence.</p>
+<ul>
+  <li>Timetable finalized at semester start — minimal changes</li>
+  <li>No inclusive education hours to coordinate</li>
+  <li>Subject-specialist teachers — roles clearly defined</li>
+  <li>Teaching assistant schedules can be set as fixed rotations</li>
+</ul>
+
+<h2>Special Ed Classrooms: Dynamic Timetables That Change Every Week</h2>
+<p>Special education classrooms exist inside regular schools. Students have a <strong>home class (원적학급)</strong> — they spend part of their day in that regular classroom for inclusive education, and the rest in the special ed classroom for individualized support. This dual structure is what makes timetabling so complex.</p>
+
+<h3>The Home Class Schedule Comes First</h3>
+<p>Special ed classroom teachers cannot build their timetable freely from scratch. They must first obtain the home class schedule for each student, identify the inclusive education hours, and then fill the remaining time with special education support. With five students comes five different home class schedules to reconcile.</p>
+
+<h3>Weekly Changes, Constant Re-Scheduling</h3>
+<p>Whenever a home class changes its schedule — due to school events, field trips, exams, or assessments — the special ed teacher must review and update the affected student's timetable. In practice, timetables can change every week, or even every day during busy periods.</p>
+<ul>
+  <li>Home class event → reschedule that student's special ed time</li>
+  <li>Teaching assistant absence → adjust inclusive hours temporarily</li>
+  <li>Related service change (e.g. speech therapy) → re-coordinate all students</li>
+  <li>Student transfer in/out → rebuild the entire timetable structure</li>
+</ul>
+
+<h3>Every Student Has a Different Schedule — Managed Alone</h3>
+<p>A typical special ed classroom has 6–8 students, each with a different home class schedule. The teacher must manage <strong>as many timetables as there are students, simultaneously</strong> — and in most cases, entirely alone. This is the single biggest driver of administrative overload for special ed classroom teachers.</p>
+
+<h2>Side-by-Side Comparison</h2>
+<ul>
+  <li><strong>Who builds the schedule:</strong> Special school → school administration / Special ed classroom → individual teacher</li>
+  <li><strong>How often it changes:</strong> Special school → fixed per semester / Special ed classroom → weekly or more</li>
+  <li><strong>Coordination required:</strong> Special school → none / Special ed classroom → one per student</li>
+  <li><strong>Complexity:</strong> Special school → low / Special ed classroom → grows with student count</li>
+  <li><strong>Teaching assistant scheduling:</strong> Special school → fixed rotations / Special ed classroom → must be re-verified regularly</li>
+</ul>
+
+<h2>Managing the Complexity of Special Ed Classroom Timetables</h2>
+<p>The complexity is structural — it comes from the system itself, not from any individual teacher's shortcomings. The key is having a system that lets you <strong>apply changes quickly and always see each student's current schedule at a glance</strong>.</p>
+<p>Peering is built for exactly this environment. Register each student's home class hours once, and when changes occur, you can re-coordinate quickly and print up-to-date individual timetables on demand.</p>
+
+<div class="summary-box" style="background:#FFFDE0;border-left:4px solid #FFCC00;padding:1.25rem 1.5rem;border-radius:0.75rem;margin-top:2rem;">
+  <strong style="font-size:1rem;">📌 3-Minute Summary for Special Ed Teachers</strong>
+  <ul style="margin-top:0.75rem;padding-left:1.25rem;">
+    <li>Special schools use fixed, school-wide timetables — very few changes</li>
+    <li>Special ed classrooms build around each student's home class — constant re-coordination</li>
+    <li>One teacher manages as many timetables as students, alone</li>
+    <li>Speed of change response and keeping schedules current is the key to efficiency</li>
+  </ul>
+</div>
+    `.trim(),
+  },
   'timetable-solution-adoption-checklist': {
     title: '7 Must-Check Items Before Adopting a Special Education Timetable Solution',
     excerpt:
