@@ -155,6 +155,10 @@ function escapeForTemplateLiteral(str) {
     .replace(/\$\{/g, '\\${')
 }
 
+// ── dry-run 플래그 파싱 ─────────────────────────────────────────────────────────
+const isDryRun = process.argv.some((a) => a === '--dry-run=true' || a === '--dry-run')
+if (isDryRun) console.log('🔍 dry-run 모드: 파일에 쓰지 않습니다.')
+
 // ── 메인 ────────────────────────────────────────────────────────────────────────
 async function main() {
   // 1. 기존 news.ts 읽기
@@ -320,7 +324,11 @@ ${escapeForTemplateLiteral(post.content)}
   const newContent =
     currentContent.slice(0, insertAt) + postTs + currentContent.slice(insertAt)
 
-  writeFileSync(CONTENT_PATH, newContent, 'utf-8')
+  if (!isDryRun) {
+    writeFileSync(CONTENT_PATH, newContent, 'utf-8')
+  } else {
+    console.log('\n[dry-run] news.ts 쓰기 건너뜀')
+  }
 
   // 13. 영어 번역을 news-en.ts에 삽입
   if (post.title_en && post.excerpt_en && post.content_en) {
@@ -344,8 +352,12 @@ ${escapeForTemplateLiteral(post.content_en)}
       const enInsertAt = enMarkerIndex + EN_MARKER.length
       const newEnContent =
         currentEnContent.slice(0, enInsertAt) + enPostTs + currentEnContent.slice(enInsertAt)
-      writeFileSync(CONTENT_EN_PATH, newEnContent, 'utf-8')
-      console.log(`\n🌐 영문 번역 저장 완료: ${post.title_en}`)
+      if (!isDryRun) {
+        writeFileSync(CONTENT_EN_PATH, newEnContent, 'utf-8')
+        console.log(`\n🌐 영문 번역 저장 완료: ${post.title_en}`)
+      } else {
+        console.log(`\n[dry-run] news-en.ts 쓰기 건너뜀 (${post.title_en})`)
+      }
     }
   } else {
     console.warn('⚠️  영문 필드(title_en/excerpt_en/content_en) 없음 — news-en.ts 업데이트 건너뜁니다.')
@@ -365,12 +377,12 @@ ${escapeForTemplateLiteral(post.content_en)}
 }
 
 main().catch((err) => {
-  // 할당량 초과 오류는 워크플로우를 실패시키지 않고 경고만 출력
+  // 할당량 초과 오류는 워크플로우를 실패(❌)로 표시하여 이메일 알림을 받도록 처리
   if (err?.status === 429 || err?.message?.includes('quota') || err?.message?.includes('RESOURCE_EXHAUSTED')) {
-    console.warn('⚠️  Gemini API 할당량이 초과되었습니다.')
-    console.warn('   해결 방법: https://console.cloud.google.com → API 할당량 확인')
-    console.warn('   이번 실행은 건너뜁니다. 잠시 후 다시 실행해 주세요.')
-    process.exit(0) // 워크플로우를 실패(❌)가 아닌 정상 종료로 처리
+    console.error('❌ Gemini API 할당량이 초과되었습니다.')
+    console.error('   해결 방법: https://console.cloud.google.com → API 할당량 확인')
+    console.error('   다음 예약 실행 시 자동 재시도됩니다.')
+    process.exit(1) // 워크플로우를 실패로 표시 → GitHub에서 이메일 알림 발송
   }
   console.error('❌ 예상치 못한 오류:', err)
   process.exit(1)
