@@ -18,6 +18,90 @@ export interface NewsPost {
 // ─────────────────────────────────────────────────────────────────────────────
 export const newsPosts: NewsPost[] = [
   {
+    slug: 'special-education-digital-transformation-2026',
+    title: '2026 특수학교 디지털 전환 가이드: 예산 효율과 행정 자동화의 핵심',
+    date: '2026-03-18',
+    category: '팁 & 노하우',
+    excerpt:
+      '특수교육 디지털 전환으로 IEP·시수 관리 서류 업무를 70% 줄이고 예산을 효율적으로 활용하는 2026년 전략을 소개합니다.',
+    readTime: 6,
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80&auto=format&fit=crop',
+    content: `
+<h2>특수교육 현장, 왜 지금 디지털 전환이 필요한가</h2>
+<p>2026년 현재, 대한민국 특수교육 현장은 전환점에 서 있습니다. 교육부는 <strong>특수교육 5개년 발전 계획</strong>을 통해 디지털 기반 특수교육 환경 구축에 예산을 집중 투입하고 있으며, 각 시도교육청 역시 에듀테크 도입 지원 사업을 확대하고 있습니다. 그러나 많은 특수학교와 특수학급 현장에서는 여전히 수기 작성, 엑셀 파일, 종이 출력물 중심의 행정 방식이 유지되고 있습니다.</p>
+<p>디지털 전환은 단순히 '편리함'의 문제가 아닙니다. <strong>교사가 행정 업무에 쏟는 시간을 줄이고, 그 시간을 학생 지원에 돌리는 것</strong>이 디지털 전환의 본질적 목표입니다. 이 글에서는 특수교육 현장에서 실현 가능한 디지털 전환 전략 세 가지와, 학교 단위 예산을 효율적으로 활용하는 방법을 구체적으로 살펴봅니다.</p>
+
+<h2>전략 1: 디지털 도구 도입으로 서류 업무 70% 감축</h2>
+<p>특수교사의 행정 업무 중 가장 많은 시간을 차지하는 것은 <strong>IEP(개별화교육계획) 작성, 시수 계산, 학생별 시간표 편성</strong>입니다. 이 세 가지 업무를 수기로 처리할 경우 한 학기 기준 교사 1인당 평균 40~60시간이 소요되는 것으로 추정됩니다.</p>
+<p>디지털 도구를 도입하면 이 과정을 대폭 단축할 수 있습니다. 예를 들어, 학생 정보와 시간표를 한 번만 입력하면 시수가 자동 계산되고, IEP 연계 항목이 자동으로 반영되며, 개인별 출력물도 버튼 하나로 생성됩니다. 실제 피어링 사용 교사들의 평균 시간표 작성 시간은 <strong>기존 3~4시간에서 5분 이내로 단축</strong>되었습니다.</p>
+<ul>
+  <li>IEP 목표와 시간표 자동 연동 → 별도 문서 작성 불필요</li>
+  <li>시수 자동 계산 → 수기 계산 오류 제거</li>
+  <li>학생별 시간표 자동 생성 → 인쇄 및 보호자 공유 즉시 가능</li>
+  <li>학기말 아카이빙 자동화 → 감사·보고용 서류 준비 시간 최소화</li>
+</ul>
+
+<h2>전략 2: 데이터 기반 학생 맞춤형 교육 환경 구축</h2>
+<p>디지털 전환의 두 번째 핵심은 <strong>축적된 데이터를 교육적 의사결정에 활용</strong>하는 것입니다. 디지털 시스템에서는 학생별 수업 참여 이력, 시수 소화율, IEP 목표 달성 현황 등의 데이터가 자연스럽게 누적됩니다. 이 데이터를 분석하면 개별 학생에게 어떤 지원이 더 필요한지, 어떤 시간대에 집중도가 높은지 등을 객관적으로 파악할 수 있습니다.</p>
+<p>특히 원적학급 통합교육 시간과 특수학급 지원 시간 사이의 균형을 데이터로 확인하면, IEP 재검토 시 근거 자료로 활용할 수 있어 <strong>학부모·교육청과의 소통에서 설득력이 높아집니다.</strong></p>
+
+<h3>데이터 기반 운영의 실제 적용 사례</h3>
+<p>A 특수학급의 경우, 디지털 시간표 시스템 도입 이후 학생 B의 수학 통합 시간 참여율이 낮다는 데이터를 발견했습니다. 이를 바탕으로 IEP 회의에서 수학 지원 방식을 개별 지도 중심으로 전환했고, 이후 해당 학생의 수업 참여도가 눈에 띄게 향상되었습니다. 수기 관리 방식에서는 포착하기 어려웠던 패턴이 디지털 시스템을 통해 가시화된 사례입니다.</p>
+
+<h2>전략 3: 피어링 솔루션으로 학교 단위 시스템 통합</h2>
+<p>개별 교사가 각자 다른 도구를 쓰는 환경에서는 학교 단위 데이터 공유와 업무 연속성 확보가 어렵습니다. 특수학급이 여러 개인 학교나, 순회교사·지원인력이 다수인 환경에서는 <strong>학교 단위 통합 시스템</strong>의 필요성이 더욱 커집니다.</p>
+<p>피어링은 개별 교사 계정과 학교 단위 관리 기능을 함께 제공합니다. 각 교사가 담당 학생의 시간표를 입력하면, 관리자는 전체 특수학급 운영 현황을 한눈에 파악할 수 있습니다. 지원인력 배정 현황, 시수 집계, 학생 현황 보고서 등을 별도 작업 없이 자동 생성할 수 있어 <strong>학교 단위 행정 효율화</strong>가 실현됩니다.</p>
+<ul>
+  <li>교사별 분산 관리 → 학교 단위 통합 대시보드</li>
+  <li>지원인력 배정 현황 실시간 확인</li>
+  <li>교육청 보고용 시수 집계 자동화</li>
+  <li>교사 교체·전보 시 데이터 인수인계 간소화</li>
+</ul>
+
+<h2>에듀테크 예산, 어떻게 활용해야 할까요?</h2>
+<p>특수학교·특수학급의 디지털 전환 예산은 크게 세 가지 경로로 확보할 수 있습니다. 첫째, <strong>교육청 특수교육 운영비</strong>에서 에듀테크 소프트웨어 구입비로 집행하는 방법. 둘째, <strong>학교 교육활동비</strong> 중 교사 연구활동 지원 항목 활용. 셋째, 교육부·교육청에서 주관하는 <strong>특수교육 디지털 전환 지원 사업</strong>에 공모하는 방법입니다.</p>
+<p>피어링은 학교 단위 도입 견적을 별도로 제공하며, 예산 집행 서류 작성도 지원합니다. 도입을 고려 중이라면 카카오톡 채널로 먼저 상담하시면 학교 상황에 맞는 도입 방안을 안내받을 수 있습니다.</p>
+
+<table style="width:100%;border-collapse:collapse;margin-top:2rem;font-size:0.92rem;">
+  <caption style="font-weight:700;font-size:1rem;text-align:left;margin-bottom:0.75rem;color:#1A1A1A;">✅ 우리 학교 디지털 전환 준비도 체크리스트</caption>
+  <thead>
+    <tr style="background:#FFCC00;">
+      <th style="padding:0.6rem 0.75rem;text-align:left;border:1px solid #E5C000;">#</th>
+      <th style="padding:0.6rem 0.75rem;text-align:left;border:1px solid #E5C000;">점검 항목</th>
+      <th style="padding:0.6rem 0.75rem;text-align:center;border:1px solid #E5C000;">확인</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background:#FFFDE0;">
+      <td style="padding:0.6rem 0.75rem;border:1px solid #E5C000;">1</td>
+      <td style="padding:0.6rem 0.75rem;border:1px solid #E5C000;">IEP·시수 관리를 디지털 도구로 처리하고 있는가?</td>
+      <td style="padding:0.6rem 0.75rem;text-align:center;border:1px solid #E5C000;">☐</td>
+    </tr>
+    <tr>
+      <td style="padding:0.6rem 0.75rem;border:1px solid #E5C000;">2</td>
+      <td style="padding:0.6rem 0.75rem;border:1px solid #E5C000;">학생별 시간표를 시스템에서 자동 생성·출력할 수 있는가?</td>
+      <td style="padding:0.6rem 0.75rem;text-align:center;border:1px solid #E5C000;">☐</td>
+    </tr>
+    <tr style="background:#FFFDE0;">
+      <td style="padding:0.6rem 0.75rem;border:1px solid #E5C000;">3</td>
+      <td style="padding:0.6rem 0.75rem;border:1px solid #E5C000;">지원인력 배정 현황을 한눈에 파악할 수 있는 도구가 있는가?</td>
+      <td style="padding:0.6rem 0.75rem;text-align:center;border:1px solid #E5C000;">☐</td>
+    </tr>
+    <tr>
+      <td style="padding:0.6rem 0.75rem;border:1px solid #E5C000;">4</td>
+      <td style="padding:0.6rem 0.75rem;border:1px solid #E5C000;">교육청 제출용 시수 집계를 별도 작업 없이 추출할 수 있는가?</td>
+      <td style="padding:0.6rem 0.75rem;text-align:center;border:1px solid #E5C000;">☐</td>
+    </tr>
+    <tr style="background:#FFFDE0;">
+      <td style="padding:0.6rem 0.75rem;border:1px solid #E5C000;">5</td>
+      <td style="padding:0.6rem 0.75rem;border:1px solid #E5C000;">교사 교체 시 학생 데이터를 시스템으로 즉시 인수인계할 수 있는가?</td>
+      <td style="padding:0.6rem 0.75rem;text-align:center;border:1px solid #E5C000;">☐</td>
+    </tr>
+  </tbody>
+</table>
+    `.trim(),
+  },
+  {
     slug: 'special-school-vs-class-timetable',
     title: '특수학교와 특수학급 시간표, 무엇이 어떻게 다를까?',
     date: '2026-03-16',

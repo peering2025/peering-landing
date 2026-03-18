@@ -14,6 +14,85 @@ export interface NewsPostEn {
 // 새 영문 글을 추가하려면 이 객체 맨 앞에 항목을 추가하세요.
 // ─────────────────────────────────────────────────────────────────────────────
 export const newsPostsEn: Record<string, NewsPostEn> = {
+  'special-education-digital-transformation-2026': {
+    title: '2026 Guide to Digital Transformation in Special Education: Budget Efficiency and Admin Automation',
+    excerpt:
+      'Reduce IEP and timetable paperwork by 70% through digital tools — a practical 2026 strategy for special education schools and classrooms.',
+    content: `
+<h2>Why Special Education Needs Digital Transformation Now</h2>
+<p>In 2026, Korea's special education sector stands at a turning point. The Ministry of Education has prioritized digital infrastructure for special education in its five-year development plan, and regional education offices are expanding EdTech adoption grants. Yet many schools still rely on handwritten forms, spreadsheets, and printed documents for daily administration.</p>
+<p>Digital transformation isn't just about convenience. Its core purpose is to <strong>reduce the time teachers spend on paperwork and redirect that time toward student support.</strong> This guide covers three practical transformation strategies and how to use available school budgets effectively.</p>
+
+<h2>Strategy 1: Cut Administrative Paperwork by 70% with Digital Tools</h2>
+<p>The most time-consuming administrative tasks for special education teachers are <strong>writing IEPs, calculating instructional hours, and building individual student timetables.</strong> Handled manually, these tasks consume an estimated 40–60 hours per teacher each semester.</p>
+<p>Digital tools eliminate most of this work. Enter student information and schedules once, and the system automatically calculates hours, links IEP goals, and generates printable individual timetables with a single click. Peering users report reducing timetable creation time from <strong>3–4 hours to under 5 minutes.</strong></p>
+<ul>
+  <li>IEP goals linked to timetable automatically → no separate document needed</li>
+  <li>Instructional hours calculated automatically → eliminates manual errors</li>
+  <li>Individual timetables generated instantly → ready to print or share with parents</li>
+  <li>End-of-semester archiving automated → audit-ready records with minimal effort</li>
+</ul>
+
+<h2>Strategy 2: Build Data-Driven Personalized Learning Environments</h2>
+<p>The second pillar of digital transformation is <strong>using accumulated data to inform educational decisions.</strong> Digital systems naturally collect data on student participation history, instructional hour completion rates, and IEP goal progress. Analyzing this data reveals which students need more support and when they are most focused.</p>
+<p>In particular, tracking the balance between inclusive education hours and special education support hours provides concrete evidence for IEP reviews — making conversations with parents and education offices <strong>more credible and data-backed.</strong></p>
+
+<h3>A Real-World Example</h3>
+<p>After introducing a digital timetable system, teachers at one special education classroom noticed that student B had a consistently low participation rate during inclusive math hours. Using this data in an IEP meeting, they shifted the math support approach to individual instruction — and student engagement improved noticeably. This pattern would have been nearly impossible to detect through manual record-keeping.</p>
+
+<h2>Strategy 3: School-Wide System Integration with Peering</h2>
+<p>When every teacher uses different tools, school-wide data sharing and operational continuity suffer. Schools with multiple special education classrooms, or many itinerant teachers and teaching assistants, need a <strong>school-wide integrated system.</strong></p>
+<p>Peering provides both individual teacher accounts and school-level management features. Each teacher manages their students' timetables, while administrators get a consolidated view of all special education operations — TA assignments, instructional hour totals, and student status reports generated automatically without extra work.</p>
+<ul>
+  <li>From siloed management → unified school-level dashboard</li>
+  <li>Teaching assistant assignments visible in real time</li>
+  <li>Instructional hour totals for education office reports, automated</li>
+  <li>Student data handover simplified when teachers transfer or change roles</li>
+</ul>
+
+<h2>How to Use EdTech Budgets Effectively</h2>
+<p>There are three main funding paths for digital transformation in special education. First, the <strong>special education operating budget</strong> allocated by education offices, which can cover software purchases. Second, <strong>school activity funds</strong> under teacher professional development. Third, <strong>special education digital transformation grant programs</strong> run by the Ministry of Education and regional offices.</p>
+<p>Peering provides separate school-level pricing quotes and supports budget documentation. If you're considering adoption, a quick consultation via KakaoTalk will connect you with guidance tailored to your school's situation.</p>
+
+<table style="width:100%;border-collapse:collapse;margin-top:2rem;font-size:0.92rem;">
+  <caption style="font-weight:700;font-size:1rem;text-align:left;margin-bottom:0.75rem;color:#1A1A1A;">✅ Digital Transformation Readiness Checklist for Your School</caption>
+  <thead>
+    <tr style="background:#FFCC00;">
+      <th style="padding:0.6rem 0.75rem;text-align:left;border:1px solid #E5C000;">#</th>
+      <th style="padding:0.6rem 0.75rem;text-align:left;border:1px solid #E5C000;">Checkpoint</th>
+      <th style="padding:0.6rem 0.75rem;text-align:center;border:1px solid #E5C000;">Done?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background:#FFFDE0;">
+      <td style="padding:0.6rem 0.75rem;border:1px solid #E5C000;">1</td>
+      <td style="padding:0.6rem 0.75rem;border:1px solid #E5C000;">Are IEP writing and instructional hour tracking handled digitally?</td>
+      <td style="padding:0.6rem 0.75rem;text-align:center;border:1px solid #E5C000;">☐</td>
+    </tr>
+    <tr>
+      <td style="padding:0.6rem 0.75rem;border:1px solid #E5C000;">2</td>
+      <td style="padding:0.6rem 0.75rem;border:1px solid #E5C000;">Can individual student timetables be auto-generated and printed from the system?</td>
+      <td style="padding:0.6rem 0.75rem;text-align:center;border:1px solid #E5C000;">☐</td>
+    </tr>
+    <tr style="background:#FFFDE0;">
+      <td style="padding:0.6rem 0.75rem;border:1px solid #E5C000;">3</td>
+      <td style="padding:0.6rem 0.75rem;border:1px solid #E5C000;">Is there a tool to see all teaching assistant assignments at a glance?</td>
+      <td style="padding:0.6rem 0.75rem;text-align:center;border:1px solid #E5C000;">☐</td>
+    </tr>
+    <tr>
+      <td style="padding:0.6rem 0.75rem;border:1px solid #E5C000;">4</td>
+      <td style="padding:0.6rem 0.75rem;border:1px solid #E5C000;">Can instructional hour totals for education office reports be extracted without extra work?</td>
+      <td style="padding:0.6rem 0.75rem;text-align:center;border:1px solid #E5C000;">☐</td>
+    </tr>
+    <tr style="background:#FFFDE0;">
+      <td style="padding:0.6rem 0.75rem;border:1px solid #E5C000;">5</td>
+      <td style="padding:0.6rem 0.75rem;border:1px solid #E5C000;">Can student data be handed over instantly via the system when teachers change?</td>
+      <td style="padding:0.6rem 0.75rem;text-align:center;border:1px solid #E5C000;">☐</td>
+    </tr>
+  </tbody>
+</table>
+    `.trim(),
+  },
   'special-school-vs-class-timetable': {
     title: 'Special Schools vs. Special Ed Classrooms: How Their Timetables Differ',
     excerpt:
