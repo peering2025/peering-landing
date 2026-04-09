@@ -2,19 +2,19 @@
  * 피어링 SEO 자동화 스크립트 (글로벌 SEO·GEO 대응: 한국어 + 영어 동시 생성)
  * ─────────────────────────────────────────────────────────────────────────────
  * 실행: scripts/ 디렉토리에서 `node generate-seo-content.mjs`
- * 환경변수: GEMINI_API_KEY
+ * 환경변수: OPENAI_API_KEY
  *
  * 동작:
  *   1. src/content/news.ts를 읽어 기존 제목·슬러그 추출 (중복 방지)
- *   2. 주제 풀에서 랜덤 힌트 5개를 선택해 Gemini에 전달
- *   3. Gemini가 한국어 + 영어 완전한 NewsPost JSON 동시 생성
+ *   2. 주제 풀에서 랜덤 힌트 5개를 선택해 OpenAI에 전달
+ *   3. OpenAI가 한국어 + 영어 완전한 NewsPost JSON 동시 생성
  *   4. 글 주제 키워드로 Unsplash 이미지 자동 배정
  *   5. news.ts의 newsPosts 배열 맨 앞에 한국어 글 삽입
  *   6. news-en.ts의 newsPostsEn 객체 맨 앞에 영어 번역 삽입
  * ─────────────────────────────────────────────────────────────────────────────
  */
 
-import { GoogleGenerativeAI } from '@google/generative-ai'
+import OpenAI from 'openai'
 import { readFileSync, writeFileSync } from 'fs'
 import { fileURLToPath } from 'url'
 import { join, dirname } from 'path'
@@ -24,9 +24,8 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const CONTENT_PATH = join(__dirname, '../src/content/news.ts')
 const CONTENT_EN_PATH = join(__dirname, '../src/content/news-en.ts')
 
-// ── Google Gemini 클라이언트 ────────────────────────────────────────────────────
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY)
-const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' })
+// ── OpenAI 클라이언트 ────────────────────────────────────────────────────────────
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
 
 // ── 이미지 풀: 주제 카테고리별 큐레이션된 Unsplash 이미지 ──────────────────────
 // 각 URL은 교육·수업·계획·협업 테마의 고품질 사진입니다.
@@ -237,16 +236,20 @@ ${hints.map((t) => `• ${t}`).join('\n')}
 
   content_en도 동일한 박스를 영어로 번역하여 포함하세요.`
 
-  console.log('\n🤖 Gemini API 호출 중...')
+  console.log('\n🤖 OpenAI API 호출 중...')
 
-  const result = await model.generateContent(prompt)
-  const responseText = result.response.text()
-  console.log('📄 Gemini 응답 수신 완료')
+  const completion = await openai.chat.completions.create({
+    model: 'gpt-4o-mini',
+    messages: [{ role: 'user', content: prompt }],
+    temperature: 0.8,
+  })
+  const responseText = completion.choices[0].message.content
+  console.log('📄 OpenAI 응답 수신 완료')
 
   // 6. JSON 파싱
   const jsonMatch = responseText.match(/```json\n([\s\S]*?)\n```/)
   if (!jsonMatch) {
-    console.error('❌ JSON 코드 블록을 찾을 수 없습니다. Gemini 응답:')
+    console.error('❌ JSON 코드 블록을 찾을 수 없습니다. OpenAI 응답:')
     console.error(responseText)
     process.exit(1)
   }
@@ -378,9 +381,9 @@ ${escapeForTemplateLiteral(post.content_en)}
 
 main().catch((err) => {
   // 할당량 초과 오류는 워크플로우를 실패(❌)로 표시하여 이메일 알림을 받도록 처리
-  if (err?.status === 429 || err?.message?.includes('quota') || err?.message?.includes('RESOURCE_EXHAUSTED')) {
-    console.error('❌ Gemini API 할당량이 초과되었습니다.')
-    console.error('   해결 방법: https://console.cloud.google.com → API 할당량 확인')
+  if (err?.status === 429 || err?.message?.includes('quota') || err?.message?.includes('rate limit')) {
+    console.error('❌ OpenAI API 할당량이 초과되었습니다.')
+    console.error('   해결 방법: https://platform.openai.com/usage → 사용량 및 한도 확인')
     console.error('   다음 예약 실행 시 자동 재시도됩니다.')
     process.exit(1) // 워크플로우를 실패로 표시 → GitHub에서 이메일 알림 발송
   }
