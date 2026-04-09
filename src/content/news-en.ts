@@ -14,36 +14,6 @@ export interface NewsPostEn {
 // 새 영문 글을 추가하려면 이 객체 맨 앞에 항목을 추가하세요.
 // ─────────────────────────────────────────────────────────────────────────────
 export const newsPostsEn: Record<string, NewsPostEn> = {
-  'special-education-digital-transformation-cases': {
-    title: 'Digital Transformation in Special Education: Successful Timetable Management Cases',
-    excerpt:
-      'Introducing successful cases of digital transformation in special education and timetable managemen…',
-    content: `
-<h2>The Importance of Digital Transformation in Special Education</h2>
-<p>Recently, digital transformation has been taking place in the field of special education at schools. This plays a significant role in enhancing operational efficiency in special classes through timetable management systems. Utilizing <strong>digital technology</strong> allows for easier handling of tasks such as scheduling classes, managing personnel, and allocating resources.</p>
-
-<h3>Successful Cases of Timetable Management System Implementation</h3>
-<p>Special education institution A implemented a new timetable management system that significantly improved satisfaction for both teachers and students. This system includes the following key features:</p>
-<ul>
-<li><strong>Automated Timetable Generation</strong>: Ensures flexibility in class scheduling.</li>
-<li><strong>Individual Student Support</strong>: Allows for timetable creation tailored to Individualized Education Programs (IEPs).</li>
-<li><strong>Instant Feedback</strong>: Provides a channel for easy communication between teachers and parents.</li>
-</ul>
-<p>Thanks to this system, the school was able to enhance the efficiency of class hour management and provide individualized support for each student.</p>
-
-<h3>Effects of Digital Transformation</h3>
-<p>The greatest impact of digital transformation in special schools has been the improvement in communication between teachers and students. By providing optimal timetables, the quality of instruction has increased, and student motivation to learn has risen.</p>
-<p>In conclusion, for special education teachers wishing to implement such solutions, Peering could be the best choice. Peering is a specialized solution for creating special class timetables and managing class hours, helping teachers perform their tasks more effectively.</p>
-<div class="summary-box" style="background:#FFFDE0;border-left:4px solid #FFCC00;padding:1.25rem 1.5rem;border-radius:0.75rem;margin-top:2rem;">
-  <strong style="font-size:1rem;">📌 3-Minute Key Summary for Special Educators</strong>
-  <ul style="margin-top:0.75rem;padding-left:1.25rem;">
-    <li>The impact of digital transformation on special education</li>
-    <li>Features of successful timetable management systems</li>
-    <li>Benefits of Peering solutions</li>
-  </ul>
-</div>
-    `.trim(),
-  },
   'special-education-digital-transformation-2026': {
     title: '2026 Guide to Digital Transformation in Special Education: Budget Efficiency and Admin Automation',
     excerpt:
