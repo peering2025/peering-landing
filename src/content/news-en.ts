@@ -14,8 +14,37 @@ export interface NewsPostEn {
 // 새 영문 글을 추가하려면 이 객체 맨 앞에 항목을 추가하세요.
 // ─────────────────────────────────────────────────────────────────────────────
 export const newsPostsEn: Record<string, NewsPostEn> = {
+  'udl-latest-applications-and-lessons-for-korea': {
+    title: '"A New Way to Design Lessons" — How UDL Is Transforming Special Education',
+    excerpt:
+      'Insights from UDL applications abroad for inclusive education in Korea.',
+    content: `
+<h2>Overview of UDL (Universal Design for Learning)</h2>
+<p>Universal Design for Learning (UDL) is an educational approach designed to enable all learners to engage effectively in their learning. UDL considers the diversity of students and provides educational content that supports students in learning in their own ways. This approach has become particularly useful for special education students with diverse needs.</p>
+
+<h3>UDL Application Cases in the US</h3>
+<p>There are several cases of UDL applications in the US. For instance, an elementary school in Massachusetts implemented UDL principles in all classrooms to create an inclusive learning environment. The school expanded student choices and provided various learning materials to enhance engagement. As a result, in May 2019, over 85% of third-grade students exceeded the benchmark on the math exam.</p>
+
+<h3>UDL Application Cases in Europe</h3>
+<p>In Europe, a special school in Sweden implemented UDL to provide tailored education for students with various disabilities. Teachers set personalized learning goals for each student and conducted classes using diverse materials and methods according to UDL principles. Consequently, students' academic achievement improved by 30%, and parent satisfaction significantly increased.</p>
+
+<h3>Implications for Education in Korea</h3>
+<p>The application of UDL in Korea's special education field presents significant opportunities. By implementing UDL principles, education can be tailored to meet the individual needs of students, enhancing the quality of learning. Particularly, with the integrated education policy to be implemented in 2024, it is crucial to adopt UDL principles. The Ministry of Education should establish teacher training programs based on UDL models to ensure teachers can learn effective application methods.</p>
+
+<div class="summary-box" style="background:#FFFDE0;border-left:4px solid #FFCC00;padding:1.25rem 1.5rem;border-radius:0.75rem;margin-top:2rem;">
+  <strong style="font-size:1rem;">📌 Key Insights for Special Educators</strong>
+  <ul style="margin-top:0.75rem;padding-left:1.25rem;">
+    <li>UDL principles can enhance accessibility in education.</li>
+    <li>Customized education tailored to individual student needs is key.</li>
+    <li>Integrating UDL into the inclusive education policy will improve educational quality.</li>
+  </ul>
+</div>
+
+<p>Peering provides a solution for effectively managing the timetable of special classes, which can greatly assist in applying UDL principles in the educational field.</p>
+    `.trim(),
+  },
   'special-education-digital-transformation-2026': {
-    title: '2026 Guide to Digital Transformation in Special Education: Budget Efficiency and Admin Automation',
+    title: 'Cut Paperwork by 70%: A Digital Transformation Strategy for Special Education',
     excerpt:
       'Reduce IEP and timetable paperwork by 70% through digital tools — a practical 2026 strategy for special education schools and classrooms.',
     content: `
@@ -154,7 +183,7 @@ export const newsPostsEn: Record<string, NewsPostEn> = {
     `.trim(),
   },
   'timetable-solution-adoption-checklist': {
-    title: '7 Must-Check Items Before Adopting a Special Education Timetable Solution',
+    title: 'No Regrets: What to Check Before Choosing a Special Ed Timetable Tool',
     excerpt:
       'A practical checklist for special education teachers evaluating timetable software — avoid costly mistakes before you buy.',
     content: `
@@ -203,7 +232,7 @@ export const newsPostsEn: Record<string, NewsPostEn> = {
     `.trim(),
   },
   'iep-timetable-integration-guide': {
-    title: 'Linking IEP Goals with Your Special Education Timetable',
+    title: 'Writing IEPs and Scheduling Separately? Here\'s How to Link Them',
     excerpt:
       'Learn practical methods to reflect IEP goals in your timetable and how Peering makes the process seamless.',
     content: `
@@ -237,7 +266,7 @@ export const newsPostsEn: Record<string, NewsPostEn> = {
   },
 
   'teacher-burnout-prevention-timetable-strategy': {
-    title: 'Preventing Burnout: Timetable Strategies for Special Education Teachers',
+    title: 'The First 2 Weeks Decide Your Year — Burnout Prevention for Special Ed Teachers',
     excerpt:
       'Discover why timetable work fuels burnout at the start of the semester — and five practical strategies to reduce the load.',
     content: `
@@ -324,7 +353,7 @@ export const newsPostsEn: Record<string, NewsPostEn> = {
   },
 
   'timetable-tips-for-special-education': {
-    title: '5 Tips for Building Better Special Education Timetables',
+    title: 'How Special Ed Teachers Cut Scheduling Time Down to 5 Minutes',
     excerpt:
       'The complex special education timetable puzzle, solved faster and more accurately every semester with these Peering tips.',
     content: `
@@ -376,7 +405,7 @@ export const newsPostsEn: Record<string, NewsPostEn> = {
   },
 
   'why-special-education-needs-dedicated-tools': {
-    title: 'Why Special Education Teachers Need Purpose-Built Tools',
+    title: 'Why General Teacher Tools Just Don\'t Cut It for Special Ed',
     excerpt:
       'Generic timetable apps and spreadsheets can\'t handle the complexity of special education. Here\'s why a dedicated solution matters.',
     content: `
