@@ -230,8 +230,10 @@ function escapeForTemplateLiteral(str) {
     .replace(/\$\{/g, '\\${')
 }
 
-// ── dry-run 플래그 파싱 ─────────────────────────────────────────────────────────
+// ── 플래그 파싱 ─────────────────────────────────────────────────────────────────
 const isDryRun = process.argv.some((a) => a === '--dry-run=true' || a === '--dry-run')
+// --type=info 또는 --type=peering 으로 요일 로직 강제 오버라이드 가능
+const typeArg = (process.argv.find((a) => a.startsWith('--type=')) || '').replace('--type=', '')
 if (isDryRun) console.log('🔍 dry-run 모드: 파일에 쓰지 않습니다.')
 
 // ── 메인 ────────────────────────────────────────────────────────────────────────
@@ -251,10 +253,13 @@ async function main() {
   now.setTime(now.getTime() + 9 * 60 * 60 * 1000)
   const dateStr = now.toISOString().split('T')[0]
 
-  // 4. 요일 기반 글 타입 결정: 월요일 = 정보성, 목요일 = 피어링 관련
+  // 4. 요일 기반 글 타입 결정: 월·수 = 정보성, 금 = 피어링 팁
   //    (KST 기준 요일: 0=일, 1=월, 2=화, 3=수, 4=목, 5=금, 6=토)
+  //    --type=info 또는 --type=peering 으로 강제 오버라이드 가능
   const dayOfWeek = now.getUTCDay() // now는 이미 KST 보정됨
-  const isPeeringPost = dayOfWeek === 4 // 목요일
+  const isPeeringPost = typeArg === 'peering' ? true
+    : typeArg === 'info' ? false
+    : dayOfWeek === 5 // 금요일
   const postTypeLabel = isPeeringPost ? '피어링 활용 팁 & 노하우' : '정보성 (연구·사례·이슈)'
 
   console.log(`📅 오늘 요일: ${['일','월','화','수','목','금','토'][dayOfWeek]} → 글 타입: ${postTypeLabel}`)
