@@ -4,12 +4,14 @@ export const categoryColors: Record<NewsCategory, string> = {
   '업데이트': 'bg-blue-100 text-blue-700',
   '팁 & 노하우': 'bg-[#FFCC00]/20 text-[#7A5E00]',
   '공지사항': 'bg-gray-100 text-gray-600',
+  '해외 연구 동향': 'bg-green-100 text-green-700',
 }
 
 export const categoryLabelsEn: Record<NewsCategory, string> = {
   '업데이트': 'Updates',
   '팁 & 노하우': 'Tips & How-To',
   '공지사항': 'Announcements',
+  '해외 연구 동향': 'Global Research Trends',
 }
 
 export function formatDate(dateStr: string, locale: 'ko' | 'en' = 'ko'): string {
