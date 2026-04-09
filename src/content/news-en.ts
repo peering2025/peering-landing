@@ -14,7 +14,7 @@ export interface NewsPostEn {
 // 새 영문 글을 추가하려면 이 객체 맨 앞에 항목을 추가하세요.
 // ─────────────────────────────────────────────────────────────────────────────
 export const newsPostsEn: Record<string, NewsPostEn> = {
-  '학교특수교육디지털전환사례': {
+  'special-education-digital-transformation-cases': {
     title: 'Digital Transformation in Special Education: Successful Timetable Management Cases',
     excerpt:
       'Introducing successful cases of digital transformation in special education and timetable managemen…',

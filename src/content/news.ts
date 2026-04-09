@@ -18,7 +18,7 @@ export interface NewsPost {
 // ─────────────────────────────────────────────────────────────────────────────
 export const newsPosts: NewsPost[] = [
   {
-    slug: '학교특수교육디지털전환사례',
+    slug: 'special-education-digital-transformation-cases',
     title: '학교 특수교육 디지털 전환: 시간표 관리 시스템 도입 성공 사례',
     date: '2026-04-09',
     category: '팁 & 노하우',
