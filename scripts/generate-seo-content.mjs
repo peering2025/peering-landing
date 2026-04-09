@@ -193,7 +193,7 @@ ${hints.map((t) => `• ${t}`).join('\n')}
 한국어(title/excerpt/content)와 영어(title_en/excerpt_en/content_en)를 모두 포함하세요:
 
 {
-  "slug": "영소문자와-하이픈만-사용-30자이내",
+  "slug": "lowercase-english-and-hyphens-only-max-50chars (⚠️ MUST be English a-z and hyphens ONLY — NO Korean, NO numbers at start)",
   "title": "한국어 SEO 제목 (40자 이내, '특수교육'/'특수학급'/'피어링' 중 1개 이상 포함)",
   "title_en": "English SEO title (60 chars max)",
   "date": "${dateStr}",
