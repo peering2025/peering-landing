@@ -14,6 +14,41 @@ export interface NewsPostEn {
 // 새 영문 글을 추가하려면 이 객체 맨 앞에 항목을 추가하세요.
 // ─────────────────────────────────────────────────────────────────────────────
 export const newsPostsEn: Record<string, NewsPostEn> = {
+  'common-mistakes-in-special-education-timetables': {
+    title: '5 Common Mistakes Special Ed Teachers Make in Timetabling',
+    excerpt:
+      'Introducing common mistakes rookie special ed teachers make in timetabling.',
+    content: `
+<h2>5 Common Mistakes Special Ed Teachers Make in Timetabling</h2>
+<p>New special education teachers face various challenges in the classroom. Among them, creating a timetable can be one of the most difficult and confusing tasks. Not only do they need to tailor the schedule to the individual needs of students, but collaboration with different teachers and aides is also essential. Let's explore common mistakes made in this process and how Peering can help overcome them.</p>
+
+<h3>1. Overlooking Students' Characteristics and Needs</h3>
+<p>In special classes, the needs of individual students can vary significantly. New teachers often get caught up in a standard timetable framework and fail to adequately reflect the unique needs of their students. To avoid this, it is crucial to thoroughly analyze each student's <strong>IEP (Individualized Education Program)</strong> and base the timetable around it.</p>
+
+<h3>2. Not Considering Subject Interconnectedness</h3>
+<p>When each subject operates independently, students may become confused. For instance, providing opportunities to review material covered in math during language class can be beneficial. Utilizing <strong>Peering's tool that recommends related subjects</strong> can facilitate this interconnectedness.</p>
+
+<h3>3. Ignoring the Role of Aides</h3>
+<p>Aides play a crucial role in special classes. However, new teachers sometimes fail to clearly define the distribution and roles of aides, leading to confusion. <strong>Peering allows you to clearly define the roles of aides and adjust the timetable accordingly.</strong></p>
+
+<h3>4. Poor Time Management</h3>
+<p>If appropriate time lengths for maintaining student focus during lessons are not established, the quality of instruction may decline. Leveraging <strong>Peering's time management feature</strong> allows teachers to calculate the time needed for each class in advance, helping to ensure proper time allocation for effective learning.</p>
+
+<h3>5. Creating Overly Complex Schedules</h3>
+<p>New teachers often tend to operate classes as diversely as possible. However, a complex schedule can burden students. <strong>Peering enables the easy creation of timetables tailored to the difficulty level and abilities of students,</strong> allowing for a more stable learning environment.</p>
+
+<p>To avoid these mistakes, it is essential to frequently utilize Peering for creating efficient timetables. Overcoming the challenges of being a new teacher and providing better education to students calls for the proactive use of these tools.</p>
+
+<div class="summary-box" style="background:#FFFDE0;border-left:4px solid #FFCC00;padding:1.25rem 1.5rem;border-radius:0.75rem;margin-top:2rem;">
+    <strong style="font-size:1rem;">📌 Key Insights for Special Education Teachers</strong>
+    <ul style="margin-top:0.75rem;padding-left:1.25rem;">
+      <li>Always reflect students' characteristics and needs.</li>
+      <li>Plan with the interconnectedness of subjects in mind.</li>
+      <li>Utilize Peering for easier time management and aide allocation.</li>
+    </ul>
+</div>
+    `.trim(),
+  },
   'udl-latest-applications-and-lessons-for-korea': {
     title: '"A New Way to Design Lessons" — How UDL Is Transforming Special Education',
     excerpt:
