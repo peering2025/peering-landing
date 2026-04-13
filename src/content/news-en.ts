@@ -14,6 +14,38 @@ export interface NewsPostEn {
 // 새 영문 글을 추가하려면 이 객체 맨 앞에 항목을 추가하세요.
 // ─────────────────────────────────────────────────────────────────────────────
 export const newsPostsEn: Record<string, NewsPostEn> = {
+  'gamification-in-special-education': {
+    title: 'Designing Special Education Classes with Gamification',
+    excerpt:
+      'This article presents how to design special education classes using gamification.',
+    content: `
+<h2>Understanding Gamification</h2>
+<p>Gamification refers to applying game elements in non-game contexts to maximize learner motivation. In special education, it offers various benefits. For instance, students with <strong>Autism Spectrum Disorder</strong> can enhance social interaction through gamification.</p>
+
+<h3>Successful Cases Abroad</h3>
+<p>A study conducted at a special school in San Francisco, USA, revealed that gamified classes positively impacted students' <strong>social skills</strong>. The research team provided students with various game-based activities, resulting in improvements in communication and collaboration skills by over <strong>30%</strong>. Throughout this process, students learned to set goals and strive to achieve them naturally through the game.</p>
+
+<h3>Implications for Korean Settings</h3>
+<p>Such cases can also be applied in special education in Korea. For example, introducing games where students form teams to solve problems can naturally lead to acquiring social skills through <strong>cooperative learning</strong>. To achieve this, teachers should design tailored games suited to students' levels and provide repetitive feedback.</p>
+
+<h3>Concrete Implementation Tips</h3>
+<ul>
+  <li>Incorporate game elements that align with students' interests.</li>
+  <li>Clearly define goals to provide students with a sense of challenge.</li>
+  <li>Monitor and record students' progress based on game outcomes.</li>
+</ul>
+
+<p>Ultimately, gamification is a powerful tool to maximize <strong>motivation</strong> and <strong>engagement</strong> in special education classes. Through this approach, teachers can assist students in confidently embracing learning. Additionally, Peering can facilitate more efficient timetable and class management.</p>
+<div class="summary-box" style="background:#FFFDE0;border-left:4px solid #FFCC00;padding:1.25rem 1.5rem;border-radius:0.75rem;margin-top:2rem;">
+  <strong style="font-size:1rem;">📌 Key Insights for Special Educators</strong>
+  <ul style="margin-top:0.75rem;padding-left:1.25rem;">
+    <li>Gamification is effective in enhancing students' social skills.</li>
+    <li>Customized game design can increase student engagement.</li>
+    <li>Continuous feedback throughout the process is essential for ongoing learning.</li>
+  </ul>
+</div>
+    `.trim(),
+  },
   'common-mistakes-in-special-education-timetables': {
     title: '5 Common Mistakes Special Ed Teachers Make in Timetabling',
     excerpt:
