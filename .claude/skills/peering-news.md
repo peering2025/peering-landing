@@ -30,7 +30,8 @@ allowed-tools: Bash, Write, Read
   slug: string        // 영소문자-하이픈만, 30자 이내
   title: string       // 40자 이내, SEO 키워드 포함
   date: string        // YYYY-MM-DD (오늘 날짜)
-  category: '팁 & 노하우' | '업데이트' | '공지사항'
+  category: '팁 & 노하우' | '업데이트' | '공지사항' | '해외 연구 동향'
+  // ⚠️ 위 4개 외 다른 카테고리는 절대 사용 금지 — 새 카테고리 생성 불가
   excerpt: string     // 80자 이내 (네이버 SEO 규칙 엄수)
   readTime: number    // 3~7 사이 정수
   image: string       // IMAGE_POOL에서 주제에 맞는 Unsplash URL 선택
