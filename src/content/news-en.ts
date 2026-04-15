@@ -14,6 +14,49 @@ export interface NewsPostEn {
 // 새 영문 글을 추가하려면 이 객체 맨 앞에 항목을 추가하세요.
 // ─────────────────────────────────────────────────────────────────────────────
 export const newsPostsEn: Record<string, NewsPostEn> = {
+  'special-education-teacher-burnout-prevention': {
+    title: 'Preventing Special Education Teacher Burnout: Causes & Strategies',
+    excerpt:
+      'This article presents causes of burnout in special education teachers and effective strategies.',
+    content: `
+<h2>Preventing Special Education Teacher Burnout</h2>
+<p>Burnout among special education teachers significantly impacts their job performance. A recent survey of special education teachers in <strong>South Korea</strong> found that over 70% experience burnout, which negatively affects both their <strong>mental health</strong> and the <strong>quality of instruction</strong>. To address this issue, it is essential to accurately identify its causes and strategically approach solutions.</p>
+
+<h3>Main Causes of Burnout</h3>
+<ul>
+<li><strong>Heavy Workload</strong>: Many special education teachers are required to juggle tasks such as writing IEPs, lesson planning, and parent consultations, leading to increased work stress.</li>
+<li><strong>Lack of Support</strong>: Insufficient awareness and support for special education within schools often leave teachers feeling isolated.</li>
+<li><strong>Emotional Exhaustion</strong>: Interactions with special needs students can drain emotional energy, resulting in ongoing stress.</li>
+</ul>
+
+<h3>Effective Response Strategies</h3>
+<p>Several strategies have been proposed to prevent burnout. Here are effective response methods:</p>
+<ul>
+<li><strong>Work Distribution</strong>: Establishing a collaborative system in schools allows multiple teachers to share responsibilities, reducing individual burdens.</li>
+<li><strong>Regular Professional Counseling</strong>: Receiving emotional support through consultations with professionals can help teachers learn stress management techniques.</li>
+<li><strong>Self-Care</strong>: Engaging in regular exercise, meditation, and hobbies is crucial for managing personal stress.</li>
+</ul>
+<p>Moreover, conducting <strong>regular workshops or seminars</strong> can foster information sharing and support networks among teachers.</p>
+
+<h3>On-Site Application Approaches</h3>
+<p>To implement these strategies in special education settings, consider the following points:</p>
+<ul>
+<li>Conduct <strong>burnout prevention training</strong> in schools to raise awareness among teachers.</li>
+<li>Organize <strong>feedback sessions</strong> regularly to enhance communication among teachers.</li>
+<li>Provide <strong>administrative support</strong> to create an environment where special education teachers can perform their duties steadily.</li>
+</ul>
+<p>It is important to remember that preventing burnout is not just an individual effort but is also determined by the culture and policies of the entire school. Ultimately, this approach will positively impact not only teachers but also students.</p>
+<p>Finally, utilizing professional solutions like <strong>Peering</strong> can streamline the management of burnout prevention strategies. Various supportive tools can help alleviate teachers' workloads and enhance job satisfaction.</p>
+<div class="summary-box" style="background:#FFFDE0;border-left:4px solid #FFCC00;padding:1.25rem 1.5rem;border-radius:0.75rem;margin-top:2rem;">
+  <strong style="font-size:1rem;">📌 Key Insights for Special Education Teachers</strong>
+  <ul style="margin-top:0.75rem;padding-left:1.25rem;">
+    <li>Building collaborative systems among teachers is crucial.</li>
+    <li>Professional counseling for emotional support is essential.</li>
+    <li>Self-care is mandatory for effective stress management.</li>
+  </ul>
+</div>
+    `.trim(),
+  },
   'gamification-in-special-education': {
     title: 'Designing Special Education Classes with Gamification',
     excerpt:
