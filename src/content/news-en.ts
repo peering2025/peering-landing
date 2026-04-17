@@ -14,6 +14,38 @@ export interface NewsPostEn {
 // 새 영문 글을 추가하려면 이 객체 맨 앞에 항목을 추가하세요.
 // ─────────────────────────────────────────────────────────────────────────────
 export const newsPostsEn: Record<string, NewsPostEn> = {
+  'ieps-and-schedule-integration-tips': {
+    title: 'Tips for Integrating IEPs with Schedules',
+    excerpt:
+      'Learn efficient ways to integrate IEPs with schedules for better class management.',
+    content: `
+<h2>Challenges in Integrating IEPs and Schedules</h2>
+<p>Creating an IEP (Individualized Education Program) is a critical task for special education teachers. However, many teachers struggle to consider how their IEPs align with their schedules, leading to challenges in class management. For instance, activities aimed at IEP goals might not be reflected in the schedule, resulting in disruptions in learning progress or delays in necessary support.</p>
+
+<h3>Step 1: Set IEP Goals</h3>
+<p>When drafting an IEP, it’s essential to clearly define each student's learning objectives. Based on the individual needs and characteristics of the students, select activities that can be incorporated into the schedule. For example, for a student needing language development, you might schedule speech therapy classes every Tuesday and Thursday.</p>
+
+<h3>Step 2: Review Schedule Integration</h3>
+<p>Examine how the established IEP goals can be integrated into the schedule. Here, you can utilize features of <strong>Peering</strong>. Peering allows you to easily find and add class activities that align with the IEP goals. While creating the schedule, ensure that the topics of each subject match the objectives for the students.</p>
+
+<h3>Step 3: Manage and Adjust Class Hours</h3>
+<p>For instance, if a particular student shows signs of losing focus during classes, it's necessary to adjust that student’s class hours in reflection of their IEP. With Peering's class hour management feature, you can easily modify class durations based on each student’s needs. Tailoring class times for individual students can enhance their engagement.</p>
+
+<h3>Step 4: Regular Review and Modification</h3>
+<p>Both IEPs and schedules are not static documents. They need to be reviewed and modified regularly as student situations change. Peering’s record management function allows you to easily monitor the progress toward IEP goals and make necessary adjustments to the schedule. For example, if a student achieves a specific goal, you can introduce higher-level activities.</p>
+
+<h2>Conclusion: Using Peering to Integrate IEPs and Schedules</h2>
+<p>As a special education teacher, the integration of IEPs and schedules is essential. Utilizing <strong>Peering</strong> can significantly ease this process. Approaching the IEP and schedule comprehensively will lead to a better classroom environment. The various functions of Peering will support your teaching efforts.</p>
+<div class="summary-box" style="background:#FFFDE0;border-left:4px solid #FFCC00;padding:1.25rem 1.5rem;border-radius:0.75rem;margin-top:2rem;">
+  <strong style="font-size:1rem;">📌 Key Insights for Special Education Teachers</strong>
+  <ul style="margin-top:0.75rem;padding-left:1.25rem;">
+    <li>Clearly define IEP goals.</li>
+    <li>Use Peering for schedule integration.</li>
+    <li>Regularly review and adjust.</li>
+  </ul>
+</div>
+    `.trim(),
+  },
   'special-education-teacher-burnout-prevention': {
     title: 'Preventing Special Education Teacher Burnout: Causes & Strategies',
     excerpt:
