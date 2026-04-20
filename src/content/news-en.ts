@@ -14,6 +14,37 @@ export interface NewsPostEn {
 // 새 영문 글을 추가하려면 이 객체 맨 앞에 항목을 추가하세요.
 // ─────────────────────────────────────────────────────────────────────────────
 export const newsPostsEn: Record<string, NewsPostEn> = {
+  '2025-special-education-annual-plan-guidelines': {
+    title: 'Incorporating Changes in 2025 Special Education Annual Plan',
+    excerpt:
+      'Guide to incorporating 2025 Ministry of Education guideline changes.',
+    content: `
+<h2>Incorporating Changes in 2025 Special Education Annual Plan</h2>
+<p>When developing the 2025 special education annual plan, it is essential to consider the recent changes in guidelines from the Ministry of Education. These changes aim to increase educational opportunities for students with disabilities and improve inclusive educational environments. Below, we will explore specific changes and how to apply them effectively.</p>
+
+<h3>1. Introduction of New Assessment Criteria</h3>
+<p>The Ministry of Education has introduced new criteria for assessing the performance of special education students. This aims to provide clearer insights into each student's strengths and weaknesses, enabling tailored educational support. For instance, starting in 2025, assessments will include evaluations of social skills and emotional regulation alongside regular academic performance reviews. This change will assist educators in supporting the overall development of their students.</p>
+
+<h3>2. Emphasis on Inclusive Education</h3>
+<p>The new guidelines place a stronger emphasis on the importance of inclusive education. Collaboration between general and special education classrooms is now essential, with various integrated programs being proposed. For example, cooperative learning projects conducted with both general and special education students can serve as excellent case studies. This fosters understanding among students and enhances collaboration among teachers.</p>
+
+<h3>3. Promotion of EdTech Adoption</h3>
+<p>Additionally, the Ministry of Education has shifted policy direction to promote the adoption of educational technology (EdTech). The use of digital learning tools is becoming a critical component in providing personalized learning experiences for students. For example, utilizing AI-driven learning platforms allows for real-time monitoring of students' progress, enabling immediate educational support when needed.</p>
+
+<h3>Implications for Application</h3>
+<p>Based on these changes, special education teachers must conduct a thorough analysis of individual student needs and characteristics when preparing their annual plans. Moreover, they should actively implement various programs for inclusive education and explore educational strategies using EdTech. Such approaches will maximize learning outcomes and provide better educational environments for students with disabilities.</p>
+
+<p>Finally, special education teachers can benefit from utilizing work solutions like Peering to efficiently manage timetables and course hours, significantly aiding in the development of effective annual plans.</p>
+<div class="summary-box" style="background:#FFFDE0;border-left:4px solid #FFCC00;padding:1.25rem 1.5rem;border-radius:0.75rem;margin-top:2rem;">
+    <strong style="font-size:1rem;">📌 Key Insights for Special Education Teachers</strong>
+    <ul style="margin-top:0.75rem;padding-left:1.25rem;">
+      <li>New assessment criteria must be integrated</li>
+      <li>Emphasize inclusive education and develop programs</li>
+      <li>Support personalized learning through EdTech adoption</li>
+    </ul>
+</div>
+    `.trim(),
+  },
   'ieps-and-schedule-integration-tips': {
     title: 'Tips for Integrating IEPs with Schedules',
     excerpt:
