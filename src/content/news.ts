@@ -39,7 +39,7 @@ export const newsPosts: NewsPost[] = [
     slug: '2025-special-education-annual-plan-guidelines',
     title: '2025 특수교육 연간 계획 수립 시 변경사항 반영하기',
     date: '2026-04-20',
-    category: '교육 정책·제도',
+    category: '팁 & 노하우',
     excerpt:
       '2025년 교육부 지침 변경사항을 반영한 특수교육 연간 계획 수립 안내',
     readTime: 6,
