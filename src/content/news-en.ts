@@ -14,6 +14,43 @@ export interface NewsPostEn {
 // 새 영문 글을 추가하려면 이 객체 맨 앞에 항목을 추가하세요.
 // ─────────────────────────────────────────────────────────────────────────────
 export const newsPostsEn: Record<string, NewsPostEn> = {
+  'high-school-special-class-credit-based-schedule': {
+    title: 'Managing Credit-Based Class Hours in High School Special Classes',
+    excerpt:
+      'Learn practical tips for managing credit-based class hours in special classes.',
+    content: `
+<h2>The Challenges of Class Hour Management for Special Education Teachers</h2>
+<p>As a special education teacher, managing students' credits and class hours each semester can be quite challenging. In high school special classes, it's essential to adjust lessons according to the students' abilities and needs, ensuring they can earn the maximum credits possible. However, errors in class hour calculations or schedule adjustments often arise, leading to disadvantages for both teachers and students.</p>
+
+<h2>Step-by-Step Class Hour Management</h2>
+<h3>Step 1: Verify Student Credits</h3>
+<p>The first step is to understand each student's credit requirements. This involves thoroughly analyzing the students' IEPs (Individualized Education Plans). By organizing the required subjects and credits for each student in a spreadsheet, such as Excel, you can have a clear overview.</p>
+
+<h3>Step 2: Calculate Class Hours</h3>
+<ul>
+  <li><strong>Determine Basic Class Hours:</strong> Calculate the weekly hours for each subject. For instance, a general subject might require 3 hours per week, while a special subject could require 2 hours.</li>
+  <li><strong>Adjust Based on Student Numbers:</strong> Special classes may have fewer students than regular classes. Adjust the class hours accordingly for more flexibility.</li>
+</ul>
+
+<h3>Step 3: Create the Schedule</h3>
+<p>Use the Peering solution to draft a schedule based on the organized class hours. Peering's scheduling feature automatically calculates the hours and recommends optimal class arrangements. This can significantly reduce the time spent on lesson planning.</p>
+
+<h3>Step 4: Continuous Monitoring</h3>
+<p>After completing the schedule, regularly check the students' credit progress. Peering provides functions to manage attendance and assignment submissions, allowing for quick adjustments as needed.</p>
+
+<h2>Conclusion</h2>
+<p>Managing credit-based class hours in special classes is essential for ensuring students' successful learning. By utilizing the Peering solution, you can handle these processes much more efficiently. Reduce the burdens of being a special education teacher and create an environment that allows you to focus more on your students.</p>
+
+<div class="summary-box" style="background:#FFFDE0;border-left:4px solid #FFCC00;padding:1.25rem 1.5rem;border-radius:0.75rem;margin-top:2rem;">
+    <strong style="font-size:1rem;">📌 Key Insights for Special Education Teachers</strong>
+    <ul style="margin-top:0.75rem;padding-left:1.25rem;">
+      <li>Understanding individual student credit requirements is crucial.</li>
+      <li>Utilize the Peering solution to streamline schedule creation.</li>
+      <li>Maintain structured class hour management through continuous monitoring.</li>
+    </ul>
+</div>
+    `.trim(),
+  },
   'positive-behavior-support-case-studies': {
     title: 'Whole-School Implementation of Positive Behavior Support',
     excerpt:
