@@ -14,6 +14,36 @@ export interface NewsPostEn {
 // 새 영문 글을 추가하려면 이 객체 맨 앞에 항목을 추가하세요.
 // ─────────────────────────────────────────────────────────────────────────────
 export const newsPostsEn: Record<string, NewsPostEn> = {
+  'ai-assistant-technology-in-special-education': {
+    title: 'The Impact of AI Assistant Technology in Special Education',
+    excerpt:
+      'Exploring positive changes brought by AI technology in special education.',
+    content: `
+<h2>Introduction: The Need for AI Assistants</h2>
+<p>In special education settings, it is crucial to design lessons that cater to diverse student needs and challenges. In this process, <strong>AI assistant</strong> technology is becoming increasingly important. AI can analyze data and recognize patterns to identify individual students' learning styles, providing tailored support.</p>
+
+<h3>Overseas Research Case: Effects of AI Technology</h3>
+<p>A study in the United States reported that classes that incorporated AI assistants saw a <strong>20%</strong> improvement in student learning outcomes. Published in the <strong>Journal of Special Education Technology</strong>, this research highlights how AI technology can enhance student engagement and reduce teacher workload.</p>
+
+<h3>Case Study: Learning Support Using AI</h3>
+<p>At a special school in the UK, the introduction of an AI-based assistant supported the individual education plans (IEPs) of students. The AI system monitored students' learning progress in real-time, suggesting necessary adjustments, which allowed teachers to operate classes more efficiently. This resulted in a <strong>30%</strong> reduction in lesson preparation time and significantly improved student satisfaction.</p>
+
+<h3>Applicability in Korean Context</h3>
+<p>In Korea, there are many ways to utilize AI assistant technology. For example, collaboration with special education support centers can facilitate the introduction of AI technologies that provide tailored education according to each student's needs. Additionally, teachers can collect and analyze student learning data through AI systems to design more effective lessons.</p>
+
+<h3>Conclusion: The Future of AI and Special Education</h3>
+<p>AI assistant technology holds the potential to bring about transformative changes in special education. Teachers can create more effective educational environments, while students can experience better learning opportunities. Tools like Peering can facilitate these changes effectively.</p>
+
+<div class="summary-box" style="background:#FFFDE0;border-left:4px solid #FFCC00;padding:1.25rem 1.5rem;border-radius:0.75rem;margin-top:2rem;">
+    <strong style="font-size:1rem;">📌 Key Insights for Special Educators</strong>
+    <ul style="margin-top:0.75rem;padding-left:1.25rem;">
+      <li>AI assistants meet the individualized learning needs of students.</li>
+      <li>They reduce teacher burdens through efficient class management.</li>
+      <li>They can significantly enhance student learning outcomes and satisfaction.</li>
+    </ul>
+</div>
+    `.trim(),
+  },
   'high-school-special-class-credit-based-schedule': {
     title: 'Managing Credit-Based Class Hours in High School Special Classes',
     excerpt:
