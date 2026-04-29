@@ -14,6 +14,39 @@ export interface NewsPostEn {
 // 새 영문 글을 추가하려면 이 객체 맨 앞에 항목을 추가하세요.
 // ─────────────────────────────────────────────────────────────────────────────
 export const newsPostsEn: Record<string, NewsPostEn> = {
+  'improving-afterschool-programs-for-students-with-disabilities': {
+    title: 'Improving Quality of Afterschool Programs for Students with Disabilities',
+    excerpt:
+      'Exploring domestic cases that improved the quality of afterschool programs for students with disabi…',
+    content: `
+<h2>The Necessity of Afterschool Programs for Students with Severe Disabilities</h2>
+<p>Students with severe disabilities can grow through various social, emotional, and cognitive experiences in afterschool programs. However, in many cases, the quality of such programs is low, failing to provide real assistance to the students. Hence, several schools have been making efforts to enhance the quality of afterschool programs.</p>
+
+<h3>Case Study: Improving Afterschool Programs at School A</h3>
+<p>School A operates an afterschool program for students with severe disabilities and has made several noteworthy changes to enhance student engagement and satisfaction. The school adopted the following approaches:</p>
+<ul>
+<li><strong>Student-Centered Program Design:</strong> Programs were designed reflecting each student’s needs and interests. For example, if a particular student showed interest in art, an art-focused program was provided.</li>
+<li><strong>Inviting Experts:</strong> The afterschool program included guest experts from related fields to carry out various activities. This allowed students to gain new experiences and teachers to learn effective teaching methods.</li>
+<li><strong>Collaboration with Parents:</strong> The direction and goals of the program were discussed with parents, creating an environment for them to participate actively. This had a positive impact on students.</li>
+</ul>
+
+<h3>Results: Analyzing Program Effectiveness</h3>
+<p>As a result of these approaches, student and parent satisfaction with the afterschool program at School A significantly improved. A survey conducted after the program indicated that 85% of parents felt their children had improved socially and emotionally. Many students also expressed that they gained confidence by meeting new friends and participating in various activities.</p>
+
+<h3>Application Points for Other Schools</h3>
+<p>The case of School A offers several lessons applicable to other schools. First, designing programs reflecting student interests provides tailored experiences for all students and contributes to higher engagement. Additionally, collaboration with experts and parents enriches the program's depth and overall experience for the students.</p>
+
+<p>It is crucial to seek diverse approaches that break away from conventional frameworks to improve the quality of afterschool programs. Utilizing specialized solutions for special education teachers, such as <strong>Peering</strong>, can enable more efficient timetable creation and time management, allowing educators to focus on running these programs effectively.</p>
+<div class="summary-box" style="background:#FFFDE0;border-left:4px solid #FFCC00;padding:1.25rem 1.5rem;border-radius:0.75rem;margin-top:2rem;">
+    <strong style="font-size:1rem;">📌 Key Insights for Special Educators</strong>
+    <ul style="margin-top:0.75rem;padding-left:1.25rem;">
+      <li>The importance of a student-centered approach.</li>
+      <li>Quality enhancement through collaboration with experts.</li>
+      <li>The significant role of communication with parents in program success.</li>
+    </ul>
+  </div>
+    `.trim(),
+  },
   'ai-assistant-technology-in-special-education': {
     title: 'The Impact of AI Assistant Technology in Special Education',
     excerpt:
