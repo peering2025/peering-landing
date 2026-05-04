@@ -14,6 +14,40 @@ export interface NewsPostEn {
 // 새 영문 글을 추가하려면 이 객체 맨 앞에 항목을 추가하세요.
 // ─────────────────────────────────────────────────────────────────────────────
 export const newsPostsEn: Record<string, NewsPostEn> = {
+  'gamification-in-special-education': {
+    title: 'Designing Special Education Lessons with Gamification',
+    excerpt:
+      'Successful examples of gamification and tips for designing lessons in special education.',
+    content: `
+<h2>The Effectiveness and Necessity of Gamification</h2>
+<p>Gamification applies gaming elements to education, effectively enhancing <strong>student engagement</strong> and <strong>motivation</strong>. In special education, where diverse learning styles and abilities are present, gamification helps increase accessibility within lessons.</p>
+
+<h3>International Research Cases</h3>
+<p>A study in the United States revealed that students receiving special education showed over a 30% increase in class participation through <strong>game-based learning</strong>. For instance, <strong>ABC School</strong> implemented customized games in math and language classes, resulting in a 25% improvement in student achievement compared to traditional methods.</p>
+
+<h3>Implementing Gamification</h3>
+<ul>
+  <li><strong>Goal Setting:</strong> Establish individual goals for students and apply relevant game elements.</li>
+  <li><strong>Gradual Learning:</strong> Adjust difficulty levels gradually to alleviate learning burdens.</li>
+  <li><strong>Feedback Provision:</strong> Provide immediate feedback to help students recognize their progress.</li>
+</ul>
+
+<h3>Field Application Cases</h3>
+<p>A special school in South Korea has introduced game-based learning to develop students' <strong>social skills</strong> and <strong>teamwork</strong> through a program. Students play quiz games in teams, learning to respect each other's opinions and collaborate. This approach has significantly boosted students' <strong>confidence</strong> and <strong>relationship-building skills</strong>.</p>
+
+<h3>Conclusion and Implications</h3>
+<p>Gamification can be effectively incorporated into special education lessons. By adjusting gaming elements to meet individual student needs and characteristics, a more immersive learning environment can be created. This innovative approach positively impacts both teachers and students, maximizing <strong>learning outcomes</strong>.</p>
+<p>Peering assists in managing these gamification elements within special class lesson planning effectively.</p>
+<div class="summary-box" style="background:#FFFDE0;border-left:4px solid #FFCC00;padding:1.25rem 1.5rem;border-radius:0.75rem;margin-top:2rem;">
+    <strong style="font-size:1rem;">📌 Key Insights for Special Educators</strong>
+    <ul style="margin-top:0.75rem;padding-left:1.25rem;">
+      <li>Gamification significantly increases student engagement.</li>
+      <li>Accurate goal setting and feedback provision are crucial.</li>
+      <li>Effective in cultivating social skills and teamwork.</li>
+    </ul>
+</div>
+    `.trim(),
+  },
   'perfect-guide-for-schedule-setting': {
     title: 'Perfect Guide for Schedule Setting in Special Classes',
     excerpt:
